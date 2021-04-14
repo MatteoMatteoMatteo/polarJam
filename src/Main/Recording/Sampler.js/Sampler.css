@@ -1,0 +1,60 @@
+.pianoContainer {
+  display: flex;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  border: solid 4px black;
+  flex-wrap: wrap;
+  cursor: pointer;
+}
+
+.allNotesContainer {
+  display: flex;
+  position: relative;
+  height: 100px;
+}
+
+.blackNotesContainer {
+  position: absolute;
+  height: 50px;
+  left: 31px;
+  pointer-events: none;
+}
+
+.whiteNote {
+  z-index: 1;
+  margin: 0 0 0 0;
+  width: 35px;
+  height: 100%;
+  background: white;
+  border-right: 3px solid black;
+}
+
+.whiteNoteHoldingDown {
+  z-index: 1;
+  margin: 0 0 0 0;
+  width: 35px;
+  height: 100%;
+  background: var(--fourthBlue);
+  border-right: 3px solid black;
+}
+
+.blackNote {
+  z-index: 2;
+  margin: 0 -7px 0 -13px;
+  pointer-events: all;
+  border-bottom-left-radius: 7px;
+  height: 50px;
+  width: 20px;
+  background-color: rgb(0, 0, 0);
+}
+
+.blackNoteHoldingDown {
+  z-index: 2;
+  margin: 0 -7px 0 -13px;
+  pointer-events: all;
+  border-bottom-left-radius: 7px;
+  height: 50px;
+  width: 20px;
+  background: var(--fourthBlue);
+}

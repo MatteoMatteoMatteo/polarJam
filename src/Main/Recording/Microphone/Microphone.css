@@ -1,0 +1,14 @@
+.grid {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: auto min-content auto;
+  align-items: center;
+  gap: 5px 10px;
+  letter-spacing: 1px;
+}
+
+.visualizer {
+  z-index: -1;
+  pointer-events: none;
+  border-radius: 8px;
+}

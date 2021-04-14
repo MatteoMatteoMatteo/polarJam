@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500&display=swap');
+
+:root {
+  --lightBlack: #222433;
+  --lightGrey: #2224337c;
+  --greyish: #acb1c5;
+  --pink: #eacad5;
+  --bg: #659dbd;
+  --sectionBody: #659dbd;
+  --blueDark: #2e566e;
+  --warningRed: #d85258;
+}
+
+body {
+  color: white;
+  background-color: var(--bg);
+  margin: 0;
+  font-family: 'Lobster';
+  font-family: 'Raleway', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  font-size: 16px;
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: white !important;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 100;
+  padding-bottom: 20px;
+}
+
+h2 {
+  font-size: 1.3rem;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  padding-bottom: 10px;
+  text-align: center;
+  border-bottom: solid 2px white;
+  margin-bottom: 32px;
+}
+
+p {
+  font-family: 'Raleway', sans-serif;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+a {
+  cursor: pointer;
+}
+
+code {
+  font-family: 'Lobster', cursive;
+}
+
+button {
+  font-family: 'Lobster', cursive;
+  font-size: 1rem;
+  color: white;
+  border: none;
+  background-color: transparent;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  display: inline-block;
+  padding: 5px;
+  cursor: pointer;
+}
+
+span {
+  cursor: pointer !important;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+.alert {
+  width: fit-content;
+  padding: 8px;
+  text-align: left;
+  margin-bottom: 30px;
+  animation: 600ms 0s 1 slideInFromLeft;
+}
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(+200%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.redAlert {
+  background-color: var(--warningRed);
+}
+
+.greenAlert {
+  background-color: green;
+}
+
+form.formHolder {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  margin: auto;
+  width: 78%;
+}
+
+input[type='text'] {
+  outline: none;
+  font-size: 1rem;
+  background-color: transparent;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: solid white 1px;
+  color: white;
+}
+
+input[type='email'] {
+  outline: none;
+  font-size: 1rem;
+  background-color: transparent;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: solid white 1px;
+  color: white;
+}
+
+input[type='password'] {
+  outline: none;
+  font-size: 1rem;
+  background-color: transparent;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: solid white 1px;
+  color: white;
+}
+
+input[type='textarea'] {
+  outline: none;
+  font-size: 1rem;
+  background-color: transparent;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: solid white 1px;
+  color: white;
+}
+
+input[type='submit'] {
+  font-size: 1rem;
+  outline: none;
+  width: fit-content;
+  padding: 9px;
+  background-color: transparent;
+  border-radius: 2px;
+  color: white;
+  border: solid 2px white;
+  transition: 50ms ease;
+  cursor: pointer;
+  margin-top: 30px;
+}
+
+input[type='submit']:hover {
+  background-color: white;
+  border: solid 2px transparent;
+  color: var(--lightBlack);
+  transition: 200ms ease;
+}
+
+.feedback-input {
+  color: var(--lightBlack);
+  font-family: 'Raleway', sans-serif;
+  font-size: 1rem;
+  border-radius: 0;
+  line-height: 22px;
+  background-color: #fbfbfb;
+
+  padding: 13px 13px 13px 13px;
+  margin-bottom: 30px;
+  min-height: 100px;
+  max-height: 500px;
+  max-width: 100%;
+  min-width: 100%;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+  box-sizing: border-box;
+  border: solid 2px transparent;
+}
+
+.feedback-input:focus {
+  background: #fff;
+  box-shadow: 0;
+  border: 2px solid white;
+  color: var(--lightBlack);
+  outline: none;
+  padding: 13px 13px 13px 13px;
+}
+
+input:focus {
+}
+
+.preventDefault {
+  -webkit-user-select: none; /* Chrome/Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+ */
+}
+
+.borderRadiusLight {
+  border-radius: 3px;
+}
+
+.animation {
+  transition: ease-in 100ms;
+}
+
+@media only screen and (min-width: 1500px) {
+  html {
+    font-size: 18px;
+  }
+}

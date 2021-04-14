@@ -1,0 +1,27 @@
+$color: #767881ad;
+$color2: #B9CDE3;
+$colorBody: #EACAD5;
+$colorNav: #222433;
+  
+  .timerAnimation{
+    width: 100%;
+  }
+  
+  .progress {
+    background: white;
+    opacity: 0.9;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+    display: flex;
+    height: 3px;
+    width: 100%;
+  }
+  
+  .progress-value{
+    background: $color;
+    height: 3px;
+    width: 0;
+    transition: width 0.3s ease-out;
+  }
+  

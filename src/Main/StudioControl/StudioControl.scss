@@ -1,0 +1,158 @@
+$color: #2224337c;
+
+.studioControl {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  color: white;
+  border-bottom: solid 2px white;
+  font-family: "Quicksand", sans-serif;
+  font-weight: lighter;
+  align-items: center;
+}
+
+.controlHolder {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1rem;
+}
+
+
+
+.playPauseHolder {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: lighter;
+  text-align: center;
+  letter-spacing: 2px;
+  color: white;
+  font-family: "Quicksand", sans-serif;
+  font-weight: lighter;
+  border-bottom: none;
+  cursor: pointer;
+  height: 100%;
+  padding: 10px;
+  border-radius: 3px 3px 0px 0px;
+  background-color: #58805F;
+}
+.playPauseHolderStarted {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: lighter;
+  text-align: center;
+  letter-spacing: 2px;
+  color: white;
+  font-family: "Quicksand", sans-serif;
+  font-weight: lighter;
+  border-bottom: none;
+  cursor: pointer;
+  height: 100%;
+  padding: 10px;
+  border-radius: 3px 3px 0px 0px;
+  background-color: #4e2421;
+}
+
+
+.lockHolder{
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: lighter;
+  text-align: center;
+  letter-spacing: 2px;
+  color: white;
+  font-family: "Quicksand", sans-serif;
+  font-weight: lighter;
+  border:solid 2px white;
+  border-bottom: none;
+  cursor: pointer;
+  height: 100%;
+  padding: 10px;
+  transition: 80ms ease;
+  border-radius: 3px 3px 0px 0px;
+}
+
+.lockActive{
+  background-color: var(--lightBlack);
+  transition: 80ms ease;
+  border:solid 2px transparent;
+  border-bottom: none;
+}
+
+.tempoHolder{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left:  10px;
+  padding-right: 10px;
+}
+
+.tempoHolder > div{
+  margin-left:  10px;
+  margin-right: 10px;
+}
+
+.controlSketch{
+  margin-top: 5px;
+}
+
+.controlSlider{
+  margin-top: 8px;
+}
+
+
+@media screen and (max-width: 700px) {
+  .controlHolder{
+    display: none;
+  }
+
+  .playPauseHolder{
+    padding: 10px;
+
+  }
+
+  .controlSketch{
+    display: none;
+  }
+
+  .lockHolder{
+    padding: 13px;
+    border: 2px solid white;
+    border-radius: 0px;
+  }
+
+  .playPauseHolder{
+    padding: 13px;
+    border: 2px solid white;
+    border-radius: 0px;
+  }
+
+  .playPauseHolderStarted{
+    padding: 13px;
+    border: 2px solid white;
+    border-radius: 0px;
+  }
+
+  .studioControl{
+    border-bottom: none;
+    justify-content: center;
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+
+  .studioControl > div{
+    margin-left:  5px;
+    margin-right: 5px;
+  }
+
+  .tempoHolder{
+    margin-top: 20px;
+  }
+}
+

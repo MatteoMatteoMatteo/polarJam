@@ -1,0 +1,132 @@
+.profileHolder {
+  width: 88%;
+  margin-left: 6%;
+  margin-right: 6%;
+  margin-top: 40px;
+}
+
+.headline {
+  border-radius: 6px 6px 16px 6px;
+  background: var(--lightBlack);
+  height: 60px;
+  width: 125px;
+  line-height: 60px;
+  padding-left: 25px;
+}
+
+.together {
+  background-color: var(--pink);
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 40px;
+  width: 100%;
+  word-wrap: break-word;
+}
+
+.userSongs {
+  background-color: var(--lightBlack);
+  padding: 20px 50px;
+  border-radius: 6px;
+  width: 25%;
+}
+
+.userProfile {
+  background-color: var(--lightBlack);
+  padding: 20px 50px;
+  border-radius: 6px;
+  width: 25%;
+}
+
+.userAccount {
+  background-color: var(--lightBlack);
+  border-radius: 6px;
+  width: 15%;
+  padding: 20px 50px;
+}
+
+.innerDiv {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: left;
+}
+
+ul.userInfoList {
+  list-style-type: none;
+  padding: 5px 0px 5px 0px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.buttonLayout {
+  font-family: "Raleway", sans-serif;
+  color: white;
+  border: 2px white solid;
+  background-color: transparent;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  display: inline-block;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 200ms;
+}
+
+.deleteAccount {
+  font-family: "Raleway", sans-serif;
+  color: white;
+  border: 2px white solid;
+  background-color: transparent;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  display: inline-block;
+  border-radius: 5px;
+  padding: 10px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: 200ms;
+}
+
+.deleteAccount:hover {
+  transition: 200ms;
+  background-color: var(--warningRed);
+  border: solid transparent 2px;
+}
+
+.buttonLayout:hover {
+  transition: 300ms;
+  background-color: var(--lightBlack);
+  border: solid transparent 2px;
+}
+
+.tellMe:hover {
+  background-color: black;
+  transition: 400ms ease;
+}
+
+.updateLayout {
+  background-color: var(--greyish);
+  padding: 20px 50px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.update1 {
+  width: 25%;
+}
+
+.update2 {
+  width: 25%;
+}
+
+.update3 {
+  width: 15%;
+}

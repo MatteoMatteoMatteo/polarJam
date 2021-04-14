@@ -1,0 +1,31 @@
+.songInfoHolder {
+  width: 100%;
+  display: flex;
+  margin-top: 33px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.songGenreElement {
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  text-align: center;
+  padding: 0.5rem;
+  margin-right: 1rem;
+}
+
+.colorTheme {
+  display: flex;
+}
+
+.ring {
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--pink);
+  border-radius: 1rem;
+  margin-right: 1rem;
+  transition: ease 500ms;
+  cursor: pointer;
+}

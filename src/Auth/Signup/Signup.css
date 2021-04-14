@@ -1,0 +1,19 @@
+.registerHolder {
+  margin: auto;
+  margin-top: 50px;
+  border-radius: 3px;
+  text-align: center;
+  width: 50%;
+  padding: 20px;
+}
+
+.formHolder {
+  margin: auto;
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+#form input {
+  background-color: black;
+}

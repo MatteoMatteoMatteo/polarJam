@@ -1,0 +1,7 @@
+form.formHolder {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  margin: auto;
+  width: 78%;
+}

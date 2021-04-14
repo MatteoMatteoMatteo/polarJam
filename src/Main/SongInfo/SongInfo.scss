@@ -1,0 +1,136 @@
+$colorBody: #eacad5;
+$color4: #222433;
+$color3: #acb1c5ad;
+
+.songInfoHolder {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.songGenreElement {
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+  // border-radius: 0px 3px 3px 0px;
+  border-radius: 0px 0px 4px 4px;
+  text-align: center;
+  font-weight: normal;
+  padding: 14px;
+  letter-spacing: 1px;
+  margin-right: 1rem;
+  color: white;
+  background-color: var(--lightBlack);
+  // border-top: solid 2px white;
+}
+
+.metronome {
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 0px 4px 0px 4px;
+  text-align: center;
+  border-bottom: var(--lightBlack) solid 3px;
+  padding: 13px;
+
+  transition: 200ms;
+  background-color: var(--fourthBlue);
+}
+
+.saveSong,
+.addRemoveSection {
+  font-family: "Raleway", sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 0px 4px 0px 4px;
+  text-align: center;
+  border-bottom: var(--lightBlack) solid 3px;
+  padding: 13px;
+  margin: 0px 10px;
+  transition: 200ms;
+  background-color: var(--fourthBlue);
+}
+
+.addRemoveSection:hover,
+.saveSong:hover {
+  background-color: black;
+  transition: 200ms;
+}
+
+.addRemoveSectionHolder{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 10px;
+}
+
+.colorTheme {
+  display: flex;
+}
+
+.ring {
+  width: 1rem;
+  height: 1rem;
+  background-color: #eacad5;
+  border-radius: 1rem;
+  margin-right: 1rem;
+  transition: ease 500ms;
+  cursor: pointer;
+}
+
+.songTitleElement {
+  width: 13%;
+  border-bottom: solid 2px $colorBody;
+}
+
+input.songName {
+  width: 100%;
+  align-self: center;
+  color: white;
+  background-color: transparent;
+  font-family: "Lobster";
+  font-size: 1rem;
+  border: none;
+  text-decoration: none;
+  outline: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+@media screen and (max-width: 700px) {
+ .metronome{
+   display: none;
+ } 
+
+ .songGenreElement{
+   display: none;
+ }
+
+  .saveSong,
+  .addRemoveSection {
+    padding: 13px 5px;
+  }
+    .songInfoHolder{
+    justify-content: center;
+  }
+
+  .addRemoveSection:hover,
+.saveSong:hover {
+  background-color: transparent  ;
+  transition: 50ms;
+}
+
+.addRemoveSection:active{
+  background-color: var(--lightBlack);
+  transition: 80ms;
+}
+
+
+}
+
+@media screen and (max-width: 400px) {
+
+
+
+}

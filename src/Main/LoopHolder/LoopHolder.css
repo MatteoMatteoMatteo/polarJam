@@ -1,0 +1,31 @@
+.loopHolder {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  overflow-x: scroll;
+  margin-bottom: 100px;
+}
+
+::-webkit-scrollbar {
+  -webkit-appearance: none;
+  height: 3px;
+  width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: black;
+  box-shadow: 0 0 1px rgba(255, 255, 255, .5);
+}
+
+@media screen and (max-width: 650px) {
+  .loopHolder {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 5px;
+    padding-right: 10px;
+    overflow-x: scroll;
+    margin-bottom: 100px;
+  }
+}

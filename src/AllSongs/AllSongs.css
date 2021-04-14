@@ -1,0 +1,11 @@
+.studioWrapper{
+    margin: auto;
+    padding: 0px 80px;
+}
+
+@media screen and (max-width: 650px) {
+.studioWrapper{
+    padding: 0px 20px;
+}   
+}
+

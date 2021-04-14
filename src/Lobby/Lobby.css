@@ -1,0 +1,34 @@
+.lobbyHolder {
+  width: 400px;
+  background-color: var(--greyish);
+  padding: 40px;
+  margin-top: 30px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.selectMe {
+  min-width: 180px;
+  padding: 20px;
+  text-align: center;
+  align-self: center;
+  font-weight: lighter;
+
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: ease-in 100ms;
+  border-bottom: white solid 6px;
+  border-right: transparent solid 6px;
+  border-left: transparent solid 6px;
+}
+
+.selectMe:hover {
+  border-bottom: var(--lightBlack) solid 6px;
+
+  transition: ease-in 100ms;
+}
+
+.selectMe:first-child {
+}
