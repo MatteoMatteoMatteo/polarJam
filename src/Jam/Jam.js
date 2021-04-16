@@ -5,8 +5,8 @@ import './Jam.css';
 import io from 'socket.io-client';
 
 export default function Jam({ location }) {
-  const socket = io('ws://localhost:8080');
-  // this.socket = io('https://socket-latency.herokuapp.com');
+  // const socket = io('ws://localhost:8080');
+  const socket = io('https://socket-latency.herokuapp.com');
 
   return (
     <>
