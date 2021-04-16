@@ -185,6 +185,7 @@ class Recording extends Component {
     activeInstrument: 'Drum Kit',
     allMusicians: null,
     musicianIndex: 0,
+    delay: '@8n',
   };
 
   componentDidMount = (props) => {
@@ -210,6 +211,7 @@ class Recording extends Component {
     });
 
     this.socket.on('user-connected', (musiciansArray) => {
+      console.log(musiciansArray);
       for (let i = 0; i < musiciansArray.length; i++) {
         if (musiciansArray[i].socketId === this.mySocketId) {
           musiciansArray[i].order = 1;
@@ -366,6 +368,7 @@ class Recording extends Component {
   };
 
   reactToNoteOn = () => {
+    console.log(this.state.allMusicians);
     this.socket.on('noteOn', (note, instrument) => {
       if (Tone.Transport.state === 'started') {
         this.playInstrumentAbroad(instrument, note, '@8n');
@@ -575,16 +578,6 @@ class Recording extends Component {
               })
             )}
           </div>
-          {/* <h1
-            style={{
-              width: '100%',
-              textAlign: 'center',
-              marginTop: '100px',
-              borderBottom: '4px white solid',
-            }}>
-            {<span style={{ margin: '30px' }}>Microphone</span>}
-          </h1>
-          <Microphone /> */}
         </div>
       </Fragment>
     );

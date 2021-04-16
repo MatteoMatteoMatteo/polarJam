@@ -4,12 +4,13 @@ import NormalSlider from '../../../UseComponents/Slider/NormalSlider';
 import './Microphone.css';
 import Tone from 'tone';
 
+const mic = new Tone.UserMedia().toMaster();
+
 export default function Microphone() {
-  const mic = new Tone.UserMedia().toMaster();
   const visualizer = useRef(null);
   const fft = new Tone.Analyser('fft', 32);
 
-  const [micState, setMicState] = useState(false);
+  const [activateMic, setActivateMic] = useState(false);
 
   const on = () => {
     mic
@@ -24,8 +25,8 @@ export default function Microphone() {
         //   }
         // }, 500);
         mic.connect(fft);
-        mic.mute = false;
         drawFFT();
+        console.log(mic);
       })
       .catch((e) => {
         // promise is rejected when the user doesn't have or allow mic access
@@ -33,9 +34,14 @@ export default function Microphone() {
       });
   };
 
+  const handleMicActivation = () => {
+    setActivateMic(true);
+    on();
+  };
+
   const off = () => {
-    console.log('hey');
-    mic.mute = true;
+    console.log(mic);
+    mic.close();
   };
 
   const drawFFT = () => {
@@ -65,23 +71,52 @@ export default function Microphone() {
   return (
     <Fragment>
       <div className='grid'>
-        <div id='volume'>Volume</div>
-        <NormalSlider min={0} id='volume' max={1} def={0.5} step={0.01} reactToChange={() => {}} />
+        {/* <div style={{ marginRight: '20px' }} id='volume'>
+          Volume
+        </div>
+        <div style={{ marginTop: '8px' }}>
+          <NormalSlider
+            min={0}
+            id='volume'
+            max={1}
+            def={0.5}
+            step={0.01}
+            reactToChange={() => {}}
+          />
+        </div> */}
+        {!activateMic && (
+          <button
+            className={'muteButton'}
+            style={{ marginTop: '20px' }}
+            onClick={() => {
+              handleMicActivation();
+            }}>
+            Activate Microphone
+          </button>
+        )}
+
+        {activateMic && (
+          <>
+            <div style={{ marginBottom: '30px' }}>
+              <canvas ref={visualizer} width={100} height={100} className='visualizer'></canvas>
+            </div>
+            <button
+              className={'muteButton'}
+              onClick={() => {
+                off();
+              }}>
+              Mute
+            </button>
+            <button
+              className={'muteButton'}
+              onClick={() => {
+                on();
+              }}>
+              Unmute
+            </button>
+          </>
+        )}
       </div>
-      <canvas ref={visualizer} width={100} height={150} className='visualizer'></canvas>
-      <button
-        onClick={() => {
-          on();
-        }}>
-        Activate Mic
-      </button>
-      <button
-        onClick={() => {
-          off();
-        }}>
-        Mute
-      </button>
-      {micState ? <div>Microphone is on and working!</div> : null}
     </Fragment>
   );
 }
