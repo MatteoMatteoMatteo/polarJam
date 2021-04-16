@@ -3,16 +3,16 @@ $color: #2224337c;
 .studioControl {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  width: 100%;
+  justify-content: center;
+  width: 70%;
   margin: auto;
   margin-top: 50px;
   margin-bottom: 30px;
   color: white;
-  border-bottom: solid 2px white;
-  font-family: "Quicksand", sans-serif;
+  font-family: 'Quicksand', sans-serif;
   font-weight: lighter;
   align-items: center;
+  border-bottom: 4px solid white;
 }
 
 .controlHolder {
@@ -20,8 +20,6 @@ $color: #2224337c;
   justify-content: space-between;
   font-size: 1rem;
 }
-
-
 
 .playPauseHolder {
   display: flex;
@@ -31,14 +29,14 @@ $color: #2224337c;
   text-align: center;
   letter-spacing: 2px;
   color: white;
-  font-family: "Quicksand", sans-serif;
+  font-family: 'Quicksand', sans-serif;
   font-weight: lighter;
   border-bottom: none;
   cursor: pointer;
   height: 100%;
   padding: 10px;
   border-radius: 3px 3px 0px 0px;
-  background-color: #58805F;
+  background-color: #58805f;
 }
 .playPauseHolderStarted {
   display: flex;
@@ -48,7 +46,7 @@ $color: #2224337c;
   text-align: center;
   letter-spacing: 2px;
   color: white;
-  font-family: "Quicksand", sans-serif;
+  font-family: 'Quicksand', sans-serif;
   font-weight: lighter;
   border-bottom: none;
   cursor: pointer;
@@ -58,101 +56,82 @@ $color: #2224337c;
   background-color: #4e2421;
 }
 
-
-.lockHolder{
-  display: flex;
-  align-items: center;
-  font-size: 1rem;
-  font-weight: lighter;
-  text-align: center;
-  letter-spacing: 2px;
-  color: white;
-  font-family: "Quicksand", sans-serif;
-  font-weight: lighter;
-  border:solid 2px white;
-  border-bottom: none;
+.metronomeHolderOn {
+  margin-left: 100px;
   cursor: pointer;
-  height: 100%;
-  padding: 10px;
-  transition: 80ms ease;
-  border-radius: 3px 3px 0px 0px;
+  opacity: 1;
 }
 
-.lockActive{
-  background-color: var(--lightBlack);
-  transition: 80ms ease;
-  border:solid 2px transparent;
-  border-bottom: none;
+.metronomeHolderOff {
+  margin-left: 100px;
+  cursor: pointer;
+  opacity: 0.5;
 }
 
-.tempoHolder{
+.tempoHolder {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-left:  10px;
-  padding-right: 10px;
+  margin-left: 100px;
 }
 
-.tempoHolder > div{
-  margin-left:  10px;
+.tempoHolder > div {
+  margin-left: 10px;
   margin-right: 10px;
 }
 
-.controlSketch{
+.controlSketch {
   margin-top: 5px;
 }
 
-.controlSlider{
+.controlSlider {
   margin-top: 8px;
 }
 
-
 @media screen and (max-width: 700px) {
-  .controlHolder{
+  .controlHolder {
     display: none;
   }
 
-  .playPauseHolder{
+  .playPauseHolder {
     padding: 10px;
-
   }
 
-  .controlSketch{
+  .controlSketch {
     display: none;
   }
 
-  .lockHolder{
+  .lockHolder {
     padding: 13px;
     border: 2px solid white;
     border-radius: 0px;
   }
 
-  .playPauseHolder{
+  .playPauseHolder {
     padding: 13px;
     border: 2px solid white;
     border-radius: 0px;
   }
 
-  .playPauseHolderStarted{
+  .playPauseHolderStarted {
     padding: 13px;
     border: 2px solid white;
     border-radius: 0px;
   }
 
-  .studioControl{
+  .studioControl {
     border-bottom: none;
     justify-content: center;
     padding-left: 5px;
     padding-right: 5px;
   }
 
-  .studioControl > div{
-    margin-left:  5px;
+  .studioControl > div {
+    margin-left: 5px;
     margin-right: 5px;
   }
 
-  .tempoHolder{
+  .tempoHolder {
     margin-top: 20px;
   }
 }
-

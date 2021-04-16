@@ -199,8 +199,8 @@ class Recording extends Component {
 
   checkForRoom = () => {
     console.log('First Connection');
-    this.socket = io('https://socket-latency.herokuapp.com');
-    // this.socket = io('ws://localhost:8080');
+    // this.socket = io('https://socket-latency.herokuapp.com');
+    this.socket = io('ws://localhost:8080');
 
     this.socket.emit(
       'join-room',
@@ -440,18 +440,12 @@ class Recording extends Component {
   render() {
     return (
       <Fragment>
-        <div className={'polarJamImgDivider'}>
-          <img src={polar} alt={'Polarjam logo.'} style={{ width: '50px' }}></img>
-        </div>
-
-        <h1
+        {/* <h1
           style={{
             textAlign: 'center',
             marginTop: '30px',
             borderBottom: '4px white solid',
-          }}>
-          {<span style={{ margin: '30px' }}>Musicians</span>}
-        </h1>
+          }}></h1> */}
         <div className={'recordingHolder'}>
           <Sampler
             midiNotes={this.state.midiNotes}
