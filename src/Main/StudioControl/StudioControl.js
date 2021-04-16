@@ -13,7 +13,7 @@ import * as cn from 'classnames';
 import './StudioControl.scss';
 import { opacity } from './../../TransitionStyles/TransitionStyles';
 
-Transport.loop = true;
+Transport.loop = false;
 Transport.loopEnd = '4m';
 window.isTransportPlaying = false;
 
