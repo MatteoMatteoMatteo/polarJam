@@ -3,7 +3,6 @@ import Recording from '../Main/Recording/Recording';
 import StudioControl from '../Main/StudioControl/StudioControl';
 import './Jam.css';
 import io from 'socket.io-client';
-import Microphone from '../Main/Recording/Microphone/Microphone';
 
 export default function Jam({ location }) {
   const socket = io('ws://localhost:8080');
@@ -19,7 +18,6 @@ export default function Jam({ location }) {
           <p>and send it to other musicians!</p>
         </div>
       </div>
-      <Microphone />
     </>
   );
 }
