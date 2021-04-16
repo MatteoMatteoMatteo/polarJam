@@ -195,6 +195,12 @@ class Recording extends Component {
     this.reactToNoteOff();
     this.measureMyLatency();
     this.measureOthersLatency();
+
+    this.props.socket.on('testInterval', () => {
+      if (Tone.Transport.state === 'started') {
+        this.piano1.triggerAttackRelease('C4', '0.5', '@8n', 0.4);
+      }
+    });
   };
 
   checkForRoom = () => {
@@ -428,6 +434,13 @@ class Recording extends Component {
     this.socket.emit('syncMetroRequest', Tone.Transport.state);
   };
 
+  testInterval = () => {
+    Tone.Transport.scheduleRepeat((time) => {
+      this.piano1.triggerAttackRelease('C4', '0.5', '@8n', 0.4);
+      this.props.socket.emit('testInterval', () => {});
+    }, '8n');
+  };
+
   componentWillUnmount = () => {
     if (this.socket) this.socket.close();
   };
@@ -578,6 +591,19 @@ class Recording extends Component {
               })
             )}
           </div>
+        </div>
+        <div
+          onClick={() => {
+            this.testInterval();
+          }}
+          style={{
+            padding: '20px',
+            width: '200px',
+            margin: 'auto',
+            textAlign: 'center',
+            border: 'solid 3px white',
+          }}>
+          Test Interval
         </div>
       </Fragment>
     );
