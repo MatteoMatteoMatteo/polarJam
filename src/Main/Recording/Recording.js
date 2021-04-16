@@ -3,7 +3,6 @@ import './Recording.css';
 import { array_move } from './../../Utils/externalFunctions';
 import Sampler from './Sampler.js/Sampler';
 import Tone from 'tone';
-import io from 'socket.io-client';
 import SelectBox from '../../UseComponents/SelectBox/SelectBox';
 import polar from './../../Assets/polar.png';
 import DiscreteSlider from '../../UseComponents/Slider/DiscreteSlider';
@@ -199,8 +198,7 @@ class Recording extends Component {
 
   checkForRoom = () => {
     console.log('First Connection');
-    // this.socket = io('https://socket-latency.herokuapp.com');
-    this.socket = io('ws://localhost:8080');
+    this.socket = this.props.socket;
 
     this.socket.emit(
       'join-room',
@@ -239,10 +237,6 @@ class Recording extends Component {
       }
 
       this.setState({ allMusicians: musiciansArray });
-    });
-
-    this.socket.on('syncMetro', (transportState) => {
-      this.props.playPause(transportState);
     });
 
     this.socket.on('user-left', (musiciansArray) => {

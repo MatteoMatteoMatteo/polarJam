@@ -73,6 +73,10 @@ class StudioControl extends Component {
   //Setup
   componentDidMount = () => {
     Transport.bpm.value = 100;
+
+    this.props.socket.on('syncMetro', (transportState) => {
+      this.playPauseRemote(transportState);
+    });
   };
 
   setup = (p5, canvasParentRef) => {
@@ -90,7 +94,6 @@ class StudioControl extends Component {
   };
 
   //Play & Pause Button
-
   playPause = () => {
     if (Transport.state === 'stopped') {
       Transport.start();
@@ -102,7 +105,55 @@ class StudioControl extends Component {
         );
       }
       this.setState({ started: true });
+
+      //Emit it to other musicians
+      let state = 'started';
+      this.props.socket.emit('syncMetroRequest', state);
     } else {
+      Transport.stop();
+      if (this.metronome.state === 'started') {
+        this.metronome.stop();
+      }
+      this.setState({ started: false });
+
+      //Emit it to other musicians
+      let state = 'stopped';
+      this.props.socket.emit('syncMetroRequest', state);
+    }
+  };
+
+  //Play & Pause Button
+  playPauseRemote = (transportState) => {
+    console.log(transportState);
+    if (Transport.state === 'stopped' && transportState === 'started') {
+      Transport.start();
+      if (this.state.metronome && this.metronome.state === 'stopped') {
+        this.metronome.playbackRate = this.state.currentTempo / this.props.bpm;
+        this.metronome.start(
+          undefined,
+          Transport.toSeconds(Transport.position) * (this.state.currentTempo / this.props.bpm)
+        );
+      }
+      this.setState({ started: true });
+    } else if (Transport.state === 'stopped' && transportState === 'stopped') {
+    } else if (Transport.state === 'started' && transportState === 'started') {
+      //Stop it
+      Transport.stop();
+      if (this.metronome.state === 'started') {
+        this.metronome.stop();
+      }
+
+      //Start it in sync
+      Transport.start();
+      if (this.state.metronome && this.metronome.state === 'stopped') {
+        this.metronome.playbackRate = this.state.currentTempo / this.props.bpm;
+        this.metronome.start(
+          undefined,
+          Transport.toSeconds(Transport.position) * (this.state.currentTempo / this.props.bpm)
+        );
+      }
+      this.setState({ started: false });
+    } else if (Transport.state === 'started' && transportState === 'stopped') {
       Transport.stop();
       if (this.metronome.state === 'started') {
         this.metronome.stop();

@@ -1,13 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Recording from '../Main/Recording/Recording';
 import StudioControl from '../Main/StudioControl/StudioControl';
 import './Jam.css';
+import io from 'socket.io-client';
 
 export default function Jam({ location }) {
+  const socket = io('ws://localhost:8080');
+  // this.socket = io('https://socket-latency.herokuapp.com');
+
   return (
     <>
-      <StudioControl bpm={120}></StudioControl>
-      <Recording location={location}></Recording>;
+      <StudioControl socket={socket} bpm={120}></StudioControl>
+      <Recording location={location} socket={socket}></Recording>;
       <div style={{ padding: '0px 20px' }}>
         <div className='homeDiv'>
           <button className='letsGoButton'>Copy Link</button>
