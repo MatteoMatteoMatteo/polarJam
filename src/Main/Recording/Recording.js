@@ -369,8 +369,6 @@ class Recording extends Component {
     this.socket.on('noteOn', (note, instrument) => {
       if (Tone.Transport.state === 'started') {
         this.playInstrumentAbroad(instrument, note, '@8n');
-      } else {
-        this.playInstrumentAbroad(instrument, note, Tone.context.currentTime);
       }
     });
   };
