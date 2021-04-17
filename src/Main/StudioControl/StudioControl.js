@@ -3,6 +3,7 @@ import LoopHolder from './../LoopHolder/LoopHolder';
 import LockRelease from './ControlComponents/LockRelease/LockRelease';
 import Slider from './ControlComponents/Slider/Slider';
 import NormalSlider from '../../UseComponents/Slider/NormalSlider';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import Aux from './../../UseComponents/MyDiv/MyDiv';
 import PlayPause from './ControlComponents/PlayPause/PlayPause';
 import polar from './../../Assets/polar.png';
