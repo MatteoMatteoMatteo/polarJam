@@ -7,8 +7,8 @@ import io from 'socket.io-client';
 import CopyLink from './CopyLink';
 
 export default function Jam({ location }) {
-  const socket = io('http://localhost:8080');
-  // const socket = io('https://socket-latency.herokuapp.com');
+  // const socket = io('http://localhost:8080');
+  const socket = io('https://socket-latency.herokuapp.com');
 
   return (
     <>
