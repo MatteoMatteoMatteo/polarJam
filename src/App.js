@@ -23,8 +23,6 @@ const App = () => {
     <Provider store={store}>
       <Router>
         <Wrapper>
-          {/* <VideoBG/> */}
-          <Nav />
           <Pages />
         </Wrapper>
       </Router>

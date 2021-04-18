@@ -2,7 +2,6 @@
   background-color: var(--lightBlack);
   display: flex;
   justify-content: space-between;
-  margin-bottom: 50px;
   font-family: 'Quicksand', sans-serif;
   font-weight: 300;
   align-items: center;
@@ -11,6 +10,7 @@
 .front {
   display: flex;
   margin-left: 80px;
+  padding: 10px 0px;
 }
 
 .back {

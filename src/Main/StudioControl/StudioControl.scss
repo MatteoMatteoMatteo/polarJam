@@ -4,7 +4,7 @@ $color: #2224337c;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  width: 70%;
+  width: 100%;
   margin: auto;
   margin-top: 50px;
   margin-bottom: 30px;
@@ -103,6 +103,7 @@ $color: #2224337c;
 
   .lockHolder {
     padding: 13px;
+
     border: 2px solid white;
     border-radius: 0px;
   }

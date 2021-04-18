@@ -33,7 +33,7 @@ const Nav = ({ auth: { isAuthenticated, loading }, logout }) => {
             textDecoration: 'none',
           }}
           to='/songs/genre1'>
-          <div className={'polarJam'}>PolarJam</div>
+          <div className={'polarJam'}></div>
         </Link>
       </div>
       {/* <div className={'back'}>

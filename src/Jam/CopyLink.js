@@ -20,7 +20,7 @@ export default function CopyLink() {
         <CopyToClipboard text={link}>
           <button className={visited ? 'letsGoButtonVisited' : 'letsGoButton'}>Copy Link</button>
         </CopyToClipboard>
-        <p>and send it to other musicians!</p>
+        <p>and send it to another musician!</p>
       </div>
     </div>
   );

@@ -1,7 +1,7 @@
 import React, { Component, Fragment } from 'react';
 import './Recording.css';
 import { array_move } from './../../Utils/externalFunctions';
-import Sampler from './Sampler.js/Sampler';
+import Sampler from './Sampler/Sampler';
 import Tone from 'tone';
 import SelectBox from '../../UseComponents/SelectBox/SelectBox';
 import polar from './../../Assets/polar.png';
