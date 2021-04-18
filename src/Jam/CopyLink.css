@@ -8,7 +8,7 @@
   align-items: center;
   border-radius: 20px;
   font-family: 'Raleway, sans-serif';
-  margin-top: 40px;
+  margin-top: 30px;
 }
 
 .letsGoButton {
@@ -28,7 +28,7 @@
 .letsGoButtonVisited {
   width: 100px;
   height: 100px;
-  background-color: var(--niceGreen);
+  background-color: var(--blueDark);
   padding: 15px;
   color: var(--bg);
   border: solid 3px var(--bg);

@@ -173,7 +173,7 @@ class InstrumentSection extends Component {
     note: null,
     myLatency: 0,
     othersLatency: 0,
-    whichInstrument: 1,
+    whichInstrument: 2,
     activeInstrument: 'Drum Kit',
     allMusicians: null,
     musicianIndex: 0,
@@ -271,31 +271,6 @@ class InstrumentSection extends Component {
             syncMetro={this.syncMetro}
             whichInstrument={this.state.whichInstrument}
           />
-          <div className={'musicianWrapper'}>
-            <div className={'notConnectedToServer'}>
-              <div className={'musicianInstrument'}>
-                <span
-                  style={{
-                    fontWeight: 'lighter',
-                    letterSpacing: '0.05rem',
-                    fontFamily: 'Lobster',
-                  }}>
-                  {this.state.activeInstrument}
-                </span>
-              </div>
-              <SelectBox
-                style={{
-                  marginLeft: this.state.allMusicians > 1 ? '20px' : null,
-                }}
-                optionId={'id'}
-                visible={true}
-                switchInstrumentForParent={(instrumentName, instrumentId) => {
-                  this.setState({ activeInstrument: instrumentName });
-                  this.setState({ whichInstrument: instrumentId }, () => {});
-                }}
-                whichInstrument={this.state.whichInstrument}></SelectBox>
-            </div>
-          </div>
         </div>
       </Fragment>
     );

@@ -7,10 +7,26 @@
 .newNav {
   width: 100%;
   background-color: var(--lightBlack);
-  padding: 25px 0px;
 }
 
 .newNavContent {
   width: 1050px;
   margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.emptyNav {
+  height: 60px;
+}
+
+.back {
+  cursor: pointer;
+  padding: 20px;
+  margin: 0px;
+}
+
+.back:hover {
+  background: var(--blueDark);
 }

@@ -1,8 +1,6 @@
 .pianoContainer {
   display: flex;
   margin: auto;
-  margin-top: 10px;
-  margin-bottom: 30px;
   border: solid 4px black;
   flex-wrap: wrap;
   cursor: pointer;

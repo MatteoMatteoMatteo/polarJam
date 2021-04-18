@@ -125,7 +125,6 @@ class StudioControl extends Component {
 
   //Play & Pause Button
   playPauseRemote = (transportState) => {
-    console.log(transportState);
     if (Transport.state === 'stopped' && transportState === 'started') {
       Transport.start();
       if (this.state.metronome && this.metronome.state === 'stopped') {
