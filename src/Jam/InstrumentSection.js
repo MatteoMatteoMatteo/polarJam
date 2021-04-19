@@ -106,7 +106,6 @@ class InstrumentSection extends Component {
     };
 
     this.socket = null;
-    this.mySocketId = null;
 
     this.myLatencyToServer = null;
     this.myLatencies = [];
@@ -182,9 +181,12 @@ class InstrumentSection extends Component {
     this.isMidiSupported();
 
     this.props.socket.on('serverSideSocketNoteOn', (note, instrument, socketId) => {
-      console.log('note receiverd');
+      this.playInstrumentRemote(1, note, Tone.context.currentTime);
+    });
+
+    this.props.socket.on('clientSideSocketNoteOn', (note, instrument, socketId) => {
       if (Tone.Transport.state === 'started') {
-        this.playInstrumentRemote(1, note, '8n');
+        this.playInstrumentRemote(1, note, '@8n');
       }
     });
   };
@@ -289,21 +291,29 @@ class InstrumentSection extends Component {
     if (this.props.roomFull) {
       if (this.props.approach === 1) {
         this.emitNoteServerSideSocket(note);
+      } else if (this.props.approach === 2) {
+        this.emitNoteClientSideSocket(note);
       }
     }
   };
 
+  //Server Side with Websocket
   emitNoteServerSideSocket = (note) => {
     this.props.socket.emit(
       'serverSideSocketNoteOn',
       note,
       this.state.whichInstrument,
-      this.state.mySocketId
+      this.props.socketId
     );
   };
-
-  test = () => {
-    this.props.socket.emit('test');
+  //Client Side with Websocket
+  emitNoteClientSideSocket = (note) => {
+    this.props.socket.emit(
+      'clientSideSocketNoteOn',
+      note,
+      this.state.whichInstrument,
+      this.props.socketId
+    );
   };
 
   render() {
@@ -318,7 +328,6 @@ class InstrumentSection extends Component {
             whichInstrument={this.state.whichInstrument}
           />
         </div>
-        <div onClick={() => this.test()}>lol</div>
       </Fragment>
     );
   }

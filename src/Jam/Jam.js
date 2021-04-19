@@ -32,7 +32,12 @@ export default function Jam({ location }) {
         {approach === 0 && <Choose chooseApproach={(data) => setApproach(data)} />}
         {approach != 0 && <StudioControl socketId={socketId} socket={socket} bpm={120} />}
         {approach != 0 && (
-          <InstrumentSection approach={approach} socket={socket} roomFull={roomFull} />
+          <InstrumentSection
+            socketId={socketId}
+            approach={approach}
+            socket={socket}
+            roomFull={roomFull}
+          />
         )}
         {approach != 0 && !roomFull && <CopyLink />}
 
@@ -45,7 +50,6 @@ export default function Jam({ location }) {
         )}
 
         {approach === 1 && <ServerSideSocket socket={socket} />}
-        {approach === 2 && <ClientSideSocket socket={socket} />}
         {approach === 3 && <ClientSidePeer socket={socket} />}
       </div>
     </>
