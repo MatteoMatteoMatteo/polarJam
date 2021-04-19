@@ -39,13 +39,13 @@ export default function Jam({ location }) {
             roomFull={roomFull}
           />
         )}
-        {approach != 0 && !roomFull && <CopyLink />}
 
         {approach != 0 && (
           <HandleRoom
             giveId={(id) => setSocketId(id)}
             roomFull={(data) => setRoomFull(data)}
             socket={socket}
+            approach={approach}
           />
         )}
 

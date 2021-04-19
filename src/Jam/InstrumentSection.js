@@ -178,12 +178,15 @@ class InstrumentSection extends Component {
   };
 
   componentDidMount = (props) => {
+    //Check for Midi
     this.isMidiSupported();
 
+    //React to Server Side Compensation with Websocket
     this.props.socket.on('serverSideSocketNoteOn', (note, instrument, socketId) => {
       this.playInstrumentRemote(1, note, Tone.context.currentTime);
     });
 
+    //React to Client Side Compensation with Websocket
     this.props.socket.on('clientSideSocketNoteOn', (note, instrument, socketId) => {
       if (Tone.Transport.state === 'started') {
         this.playInstrumentRemote(1, note, '@8n');
@@ -293,11 +296,13 @@ class InstrumentSection extends Component {
         this.emitNoteServerSideSocket(note);
       } else if (this.props.approach === 2) {
         this.emitNoteClientSideSocket(note);
+      } else if (this.props.approach === 3) {
+        this.emitNoteClientSidePeer(note);
       }
     }
   };
 
-  //Server Side with Websocket
+  //Emit to Server Side Compensation with Websocket
   emitNoteServerSideSocket = (note) => {
     this.props.socket.emit(
       'serverSideSocketNoteOn',
@@ -306,7 +311,7 @@ class InstrumentSection extends Component {
       this.props.socketId
     );
   };
-  //Client Side with Websocket
+  //Emit to Client Side Compensationwith Websocket
   emitNoteClientSideSocket = (note) => {
     this.props.socket.emit(
       'clientSideSocketNoteOn',
@@ -315,6 +320,8 @@ class InstrumentSection extends Component {
       this.props.socketId
     );
   };
+  //Emit to Client Side Compensation with Peer to Peer
+  emitNoteClientSidePeer = (note) => {};
 
   render() {
     return (

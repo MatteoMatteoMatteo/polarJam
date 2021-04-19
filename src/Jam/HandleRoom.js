@@ -70,7 +70,7 @@ class HandleRoom extends Component {
   render() {
     return (
       <>
-        {this.state.roomFull && (
+        {this.state.roomFull && this.props.approach != 3 && (
           <div className={'fullRoom'}>You are connected to another Musician</div>
         )}
       </>

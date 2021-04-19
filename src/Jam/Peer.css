@@ -3,21 +3,24 @@
   flex-direction: column;
   justify-content: center;
   text-align: center;
+  align-items: center;
   margin: auto;
   width: 500px;
-  margin-top: 100px;
-}
-
-.container > div {
-  padding: 20px;
+  margin-top: 50px;
 }
 
 .otherMusician {
-  border-top: 3px white solid;
-
+  border: 3px white solid;
   display: flex;
+  width: fit-content;
+  padding: 20px;
   justify-content: center;
   align-items: center;
+}
+
+.otherMusician:hover {
+  background-color: var(--niceGreen);
+  cursor: pointer;
 }
 
 .otherMusician > div {
