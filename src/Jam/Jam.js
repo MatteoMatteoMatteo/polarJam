@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import StudioControl from '../Main/StudioControl/StudioControl';
 import './Jam.css';
 import io from 'socket.io-client';
@@ -22,7 +22,7 @@ export default function Jam({ location }) {
     3: 'Client Side with Peer to Peer',
   };
   const [approach, setApproach] = useState(0);
-
+  const [socketId, setSocketId] = useState(null);
   const [roomFull, setRoomFull] = useState(false);
 
   return (
@@ -30,11 +30,19 @@ export default function Jam({ location }) {
       <Navigation approaches={approaches} approach={approach} />
       <div className='wrapMe'>
         {approach === 0 && <Choose chooseApproach={(data) => setApproach(data)} />}
-        {approach != 0 && <StudioControl socket={socket} bpm={120} />}
-        {approach != 0 && <InstrumentSection roomFull={roomFull} />}
+        {approach != 0 && <StudioControl socketId={socketId} socket={socket} bpm={120} />}
+        {approach != 0 && (
+          <InstrumentSection approach={approach} socket={socket} roomFull={roomFull} />
+        )}
         {approach != 0 && !roomFull && <CopyLink />}
 
-        {approach != 0 && <HandleRoom roomFull={(data) => setRoomFull(data)} socket={socket} />}
+        {approach != 0 && (
+          <HandleRoom
+            giveId={(id) => setSocketId(id)}
+            roomFull={(data) => setRoomFull(data)}
+            socket={socket}
+          />
+        )}
 
         {approach === 1 && <ServerSideSocket socket={socket} />}
         {approach === 2 && <ClientSideSocket socket={socket} />}

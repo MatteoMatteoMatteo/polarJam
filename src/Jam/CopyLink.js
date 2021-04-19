@@ -16,9 +16,13 @@ export default function CopyLink() {
 
   return (
     <div style={{ padding: '0px 0px' }}>
-      <div className='homeDiv' onClick={() => handleVisit()}>
+      <div className='homeDiv'>
         <CopyToClipboard text={link}>
-          <button className={visited ? 'letsGoButtonVisited' : 'letsGoButton'}>Copy Link</button>
+          <button
+            onClick={() => handleVisit()}
+            className={visited ? 'letsGoButtonVisited' : 'letsGoButton'}>
+            Copy Link
+          </button>
         </CopyToClipboard>
         <p>and send it to another musician!</p>
       </div>

@@ -109,7 +109,7 @@ class StudioControl extends Component {
 
       //Emit it to other musicians
       let state = 'started';
-      this.props.socket.emit('syncMetroRequest', state);
+      this.props.socket.emit('syncMetroRequest', state, this.props.socketId);
     } else {
       Transport.stop();
       if (this.metronome.state === 'started') {
@@ -119,12 +119,13 @@ class StudioControl extends Component {
 
       //Emit it to other musicians
       let state = 'stopped';
-      this.props.socket.emit('syncMetroRequest', state);
+      this.props.socket.emit('syncMetroRequest', state, this.props.socketId);
     }
   };
 
   //Play & Pause Button
   playPauseRemote = (transportState) => {
+    console.log('ehheeh');
     if (Transport.state === 'stopped' && transportState === 'started') {
       Transport.start();
       if (this.state.metronome && this.metronome.state === 'stopped') {

@@ -25,6 +25,10 @@ class HandleRoom extends Component {
       window.location.href.substring(window.location.href.indexOf('?') + 1)
     );
 
+    this.socket.on('mySocketId', (id) => {
+      this.props.giveId(id);
+    });
+
     this.socket.on('mySocketId', (mySocketId) => {
       this.mySocketId = mySocketId;
     });

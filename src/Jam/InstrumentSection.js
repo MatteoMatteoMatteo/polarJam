@@ -2,8 +2,6 @@ import React, { Component, Fragment } from 'react';
 import './InstrumentSection.css';
 import Sampler from '../Main/Recording/Sampler/Sampler';
 import Tone from 'tone';
-import SelectBox from '../UseComponents/SelectBox/SelectBox';
-import LoadingSpinner from '../UseComponents/LoadingSpinner/LoadingSpinner';
 
 class InstrumentSection extends Component {
   constructor(props) {
@@ -182,6 +180,13 @@ class InstrumentSection extends Component {
 
   componentDidMount = (props) => {
     this.isMidiSupported();
+
+    this.props.socket.on('serverSideSocketNoteOn', (note, instrument, socketId) => {
+      console.log('note receiverd');
+      if (Tone.Transport.state === 'started') {
+        this.playInstrumentRemote(1, note, '8n');
+      }
+    });
   };
 
   isMidiSupported = () => {
@@ -245,6 +250,26 @@ class InstrumentSection extends Component {
   playInstrument = (instrument, key, time) => {
     if (this.keyToNote[key] || isNaN(key)) {
       if (instrument === 1) {
+        this.drums.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '1.7', 0);
+      } else if (instrument === 2) {
+        this.piano1.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.5', time, 0.4);
+      } else if (instrument === 3) {
+        this.piano2.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.5', time, 0.5);
+      } else if (instrument === 4) {
+        this.pluck1.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.5', time, 0.5);
+      } else if (instrument === 5) {
+        this.pluck2.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '1', time, 0.6);
+      } else if (instrument === 6) {
+        this.acid.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '1', time, 0.6);
+      }
+    }
+
+    this.handleEmitNote(key);
+  };
+
+  playInstrumentRemote = (instrument, key, time) => {
+    if (this.keyToNote[key] || isNaN(key)) {
+      if (instrument === 1) {
         this.drums.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '1.7', time);
       } else if (instrument === 2) {
         this.piano1.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.5', time, 0.4);
@@ -260,6 +285,27 @@ class InstrumentSection extends Component {
     }
   };
 
+  handleEmitNote = (note) => {
+    if (this.props.roomFull) {
+      if (this.props.approach === 1) {
+        this.emitNoteServerSideSocket(note);
+      }
+    }
+  };
+
+  emitNoteServerSideSocket = (note) => {
+    this.props.socket.emit(
+      'serverSideSocketNoteOn',
+      note,
+      this.state.whichInstrument,
+      this.state.mySocketId
+    );
+  };
+
+  test = () => {
+    this.props.socket.emit('test');
+  };
+
   render() {
     return (
       <Fragment>
@@ -272,6 +318,7 @@ class InstrumentSection extends Component {
             whichInstrument={this.state.whichInstrument}
           />
         </div>
+        <div onClick={() => this.test()}>lol</div>
       </Fragment>
     );
   }
