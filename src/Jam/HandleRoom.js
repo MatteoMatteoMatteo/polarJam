@@ -31,16 +31,17 @@ class HandleRoom extends Component {
 
     this.socket.on('mySocketId', (mySocketId) => {
       this.mySocketId = mySocketId;
+      console.log(mySocketId);
     });
 
     this.socket.on('user-connected', (musiciansArray) => {
-      console.log(musiciansArray);
       if (musiciansArray.length > 1) {
         this.setState({ roomFull: true });
         this.props.roomFull(true);
       }
 
       this.setState({ allMusicians: musiciansArray });
+      this.props.allMusicians(this.state.allMusicians);
     });
 
     this.socket.on('switchedInstrument', (musiciansArray) => {
@@ -70,8 +71,15 @@ class HandleRoom extends Component {
   render() {
     return (
       <>
-        {this.state.roomFull && this.props.approach != 3 && (
+        {this.state.roomFull && this.props.approach != 3 ? (
           <div className={'fullRoom'}>You are connected to another Musician</div>
+        ) : (
+          this.props.approach != 3 && (
+            <div className={'emptyRoom'}>You are not connected to another Musician</div>
+          )
+        )}
+        {!this.state.roomFull && this.props.approach === 3 && (
+          <div className={'emptyRoom'}>You are not connected to another Musician</div>
         )}
       </>
     );

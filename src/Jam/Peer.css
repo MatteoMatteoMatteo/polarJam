@@ -9,6 +9,16 @@
   margin-top: 50px;
 }
 
+.accept {
+  border: solid 3px white;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.accept:hover {
+  background-color: var(--niceGreen);
+}
+
 .otherMusician {
   border: 3px white solid;
   display: flex;
@@ -16,6 +26,10 @@
   padding: 20px;
   justify-content: center;
   align-items: center;
+}
+
+.calling {
+  padding: 20px;
 }
 
 .otherMusician:hover {
@@ -28,6 +42,7 @@
 }
 
 .actionHolder {
+  margin-top: 100px;
   display: flex;
   justify-content: center;
   align-items: center;

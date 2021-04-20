@@ -7,6 +7,7 @@ import Peer from 'simple-peer';
 import Tone from 'tone';
 import ClientSideSocket from './ClientSideSocket';
 import './../Peer.css';
+import { connectAdvanced } from 'react-redux';
 
 var peer1;
 var peer2;
@@ -17,7 +18,7 @@ const piano1 = new Tone.Sampler({
   C4: require('../../Assets/Instruments/Piano2/C4.mp3'),
 }).toMaster();
 
-function ClientSidePeer({ socket }) {
+function ClientSidePeer({ socket, socketId, roomFull, allMusicians }) {
   const [me, setMe] = useState('');
   const [stream, setStream] = useState();
   const [receivingCall, setReceivingCall] = useState(false);
@@ -26,34 +27,33 @@ function ClientSidePeer({ socket }) {
   const [callAccepted, setCallAccepted] = useState(false);
   const [idToCall, setIdToCall] = useState('');
   const [callEnded, setCallEnded] = useState(false);
-  const [name, setName] = useState('');
+  const [calling, setCalling] = useState(false);
   const [multipleMusicians, setMultipleMusicians] = useState(false);
 
   const connectionRef = useRef();
 
   useEffect(() => {
-    socket.on('me', (id) => {
-      setMe(id);
-    });
-
-    socket.emit('join-room', window.location.href.substring(window.location.href.indexOf('?') + 1));
-
-    socket.on('user-connected', (musiciansArray) => {
-      if (musiciansArray.length > 1) {
-        setMultipleMusicians(true);
-        setIdToCall(musiciansArray[1].socketId);
-      }
-    });
-
     socket.on('callUser', (data) => {
       setReceivingCall(true);
       setCaller(data.from);
-      setName(data.name);
       setCallerSignal(data.signal);
+    });
+
+    socket.on('callAccepted', (signal) => {
+      setCallAccepted(true);
+      peer1.signal(signal);
     });
   }, []);
 
-  const callUser = (id) => {
+  const callUser = () => {
+    setCalling(true);
+    var idToCall;
+    allMusicians.forEach((el) => {
+      if (el.socketId != socketId) {
+        idToCall = el.socketId;
+      }
+    });
+
     peer1 = new Peer({
       initiator: true,
       trickle: false,
@@ -61,10 +61,9 @@ function ClientSidePeer({ socket }) {
     });
     peer1.on('signal', (data) => {
       socket.emit('callUser', {
-        userToCall: id,
+        userToCall: idToCall,
         signalData: data,
-        from: me,
-        name: name,
+        from: socketId,
       });
     });
     peer1.on('connect', () => {
@@ -72,12 +71,7 @@ function ClientSidePeer({ socket }) {
     });
 
     peer1.on('data', (data) => {
-      console.log('I got a message from musician1: ' + data);
-    });
-
-    socket.on('callAccepted', (signal) => {
-      setCallAccepted(true);
-      peer1.signal(signal);
+      console.log('I got a message from musician 2: ' + data);
     });
 
     connectionRef.current = peer1;
@@ -98,6 +92,9 @@ function ClientSidePeer({ socket }) {
     });
     peer2.on('connect', () => {
       console.log('connected');
+    });
+    peer2.on('data', (data) => {
+      console.log('I got a message from musician 1: ' + data);
     });
 
     peer2.signal(callerSignal);
@@ -120,25 +117,32 @@ function ClientSidePeer({ socket }) {
   const sendAudio = () => {
     Tone.Transport.scheduleRepeat((time) => {
       piano1.triggerAttackRelease('C4', '0.5', '@8n', 0.4);
-      peer1.send('hello answerer!!!!');
     }, '8n');
   };
 
   return (
     <>
       <div className='container'>
-        {multipleMusicians && (
-          <div className='otherMusician' onClick={() => callUser(idToCall)}>
-            Set up Peer to Peer connection to another musician
+        {roomFull && !calling && !receivingCall ? (
+          <div className='otherMusician' onClick={() => callUser()}>
+            Set up Peer to Peer connection to the other musician
+          </div>
+        ) : (
+          roomFull &&
+          !callAccepted &&
+          calling && <div className='calling'>Waiting for other musician to accept...</div>
+        )}
+        {receivingCall && !callAccepted && (
+          <div className={'accept'} onClick={() => answerCall()}>
+            Accept
           </div>
         )}
-        {receivingCall && <button onClick={() => answerCall()}>Accept call</button>}
       </div>
-      {/* <div className={'actionHolder'}>
+      {callAccepted && <div className={'fullRoom'}>You are connected to another Musician</div>}
+      <div className={'actionHolder'}>
         <button onClick={() => helloToCaller()}>HelloToCaller</button>
-        <button onClick={() => helloToAnswerer()}>HelloToAnswerer</button>
-        <button onClick={() => sendAudio()}>SendAudioFrom1To2</button>
-      </div> */}
+        <button onClick={() => helloToAnswerer()}>helloToAnswerer</button>
+      </div>
     </>
   );
 }

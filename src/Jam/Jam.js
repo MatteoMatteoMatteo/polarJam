@@ -21,9 +21,10 @@ export default function Jam({ location }) {
     2: 'Client Side with Websocket',
     3: 'Client Side with Peer to Peer',
   };
-  const [approach, setApproach] = useState(0);
   const [socketId, setSocketId] = useState(null);
+  const [approach, setApproach] = useState(0);
   const [roomFull, setRoomFull] = useState(false);
+  const [allMusicians, setAllMusicians] = useState([]);
 
   return (
     <>
@@ -42,6 +43,7 @@ export default function Jam({ location }) {
 
         {approach != 0 && (
           <HandleRoom
+            allMusicians={(data) => setAllMusicians(data)}
             giveId={(id) => setSocketId(id)}
             roomFull={(data) => setRoomFull(data)}
             socket={socket}
@@ -50,7 +52,14 @@ export default function Jam({ location }) {
         )}
 
         {approach === 1 && <ServerSideSocket socket={socket} />}
-        {approach === 3 && <ClientSidePeer socket={socket} />}
+        {approach === 3 && (
+          <ClientSidePeer
+            allMusicians={allMusicians}
+            roomFull={roomFull}
+            socketId={socketId}
+            socket={socket}
+          />
+        )}
       </div>
     </>
   );

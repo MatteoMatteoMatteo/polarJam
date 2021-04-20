@@ -11,9 +11,8 @@
 .emptyRoom {
   margin: auto;
   margin-top: 30px;
-  background-color: var(--warningRed);
-  padding: 20px;
+  border-bottom: solid 2px var(--greyish);
+  padding: 10px;
   text-align: center;
   width: fit-content;
-  border-radius: 3px 3px 3px 3px;
 }
