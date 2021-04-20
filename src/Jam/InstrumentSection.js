@@ -322,7 +322,7 @@ class InstrumentSection extends Component {
   testSendAudio = () => {
     Tone.Transport.scheduleRepeat((time) => {
       this.handleEmitNote('C4');
-    }, '16n');
+    }, '4n');
   };
 
   render() {

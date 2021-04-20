@@ -111,7 +111,7 @@ function ClientSidePeer({ socket, socketId, roomFull, allMusicians }) {
     Tone.Transport.scheduleRepeat((time) => {
       // piano1.triggerAttackRelease('C4', '0.5', '@8n', 0.4);
       peer1.send();
-    }, '16n');
+    }, '4n');
   };
 
   return (
