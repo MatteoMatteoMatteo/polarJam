@@ -175,7 +175,6 @@ class InstrumentSection extends Component {
     allMusicians: null,
     musicianIndex: 0,
     delay: '@8n',
-    CandE: false,
   };
 
   componentDidMount = (props) => {
@@ -322,22 +321,8 @@ class InstrumentSection extends Component {
 
   testSendAudio = () => {
     Tone.Transport.scheduleRepeat((time) => {
-      if (this.state.CandE) {
-        this.sendE();
-      } else {
-        this.sendC();
-      }
+      this.emitNoteClientSideSocket('C4');
     }, '4n');
-  };
-
-  sendC = () => {
-    this.emitNoteClientSideSocket('C4');
-    this.setState({ CandE: true });
-  };
-
-  sendE = () => {
-    this.emitNoteClientSideSocket('E4');
-    this.setState({ CandE: false });
   };
 
   render() {
