@@ -88,7 +88,7 @@ function ClientSidePeer({ socket, socketId, roomFull, allMusicians }) {
       socket.emit('answerCall', { signal: data, to: caller });
     });
     peer2.on('data', (data) => {
-      piano1.triggerAttackRelease('C4', '0.5', '@8n', 0.4);
+      if (Tone.Transport.state === 'started') piano1.triggerAttackRelease('C4', '0.5', '@8n');
     });
     peer2.on('connect', () => {
       console.log('connected');
@@ -106,17 +106,10 @@ function ClientSidePeer({ socket, socketId, roomFull, allMusicians }) {
     connectionRef.current.destroy();
   };
 
-  const helloToCaller = () => {
-    peer2.send('halllooooooooo mr Caller!!');
-  };
-
-  const helloToAnswerer = () => {
-    peer1.send('hello answerer!!!!');
-  };
-
   const sendAudio = () => {
     Tone.Transport.scheduleRepeat((time) => {
-      piano1.triggerAttackRelease('C4', '0.5', '@8n', 0.4);
+      // piano1.triggerAttackRelease('C4', '0.5', '@8n', 0.4);
+      peer1.send();
     }, '8n');
   };
 
@@ -140,8 +133,7 @@ function ClientSidePeer({ socket, socketId, roomFull, allMusicians }) {
       </div>
       {callAccepted && <div className={'fullRoom'}>You are connected to another Musician</div>}
       <div className={'actionHolder'}>
-        <button onClick={() => helloToCaller()}>HelloToCaller</button>
-        <button onClick={() => helloToAnswerer()}>helloToAnswerer</button>
+        <button onClick={() => sendAudio()}>Send Audio From 1 To 2</button>
       </div>
     </>
   );

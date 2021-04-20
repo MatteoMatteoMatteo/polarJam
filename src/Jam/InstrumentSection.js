@@ -183,13 +183,13 @@ class InstrumentSection extends Component {
 
     //React to Server Side Compensation with Websocket
     this.props.socket.on('serverSideSocketNoteOn', (note, instrument, socketId) => {
-      this.playInstrumentRemote(1, note, Tone.context.currentTime);
+      this.playInstrumentRemote(2, note, Tone.context.currentTime);
     });
 
     //React to Client Side Compensation with Websocket
     this.props.socket.on('clientSideSocketNoteOn', (note, instrument, socketId) => {
       if (Tone.Transport.state === 'started') {
-        this.playInstrumentRemote(1, note, '@8n');
+        this.playInstrumentRemote(2, note, '@8n');
       }
     });
   };
@@ -296,8 +296,6 @@ class InstrumentSection extends Component {
         this.emitNoteServerSideSocket(note);
       } else if (this.props.approach === 2) {
         this.emitNoteClientSideSocket(note);
-      } else if (this.props.approach === 3) {
-        this.emitNoteClientSidePeer(note);
       }
     }
   };
@@ -320,8 +318,12 @@ class InstrumentSection extends Component {
       this.props.socketId
     );
   };
-  //Emit to Client Side Compensation with Peer to Peer
-  emitNoteClientSidePeer = (note) => {};
+
+  testSendAudio = () => {
+    Tone.Transport.scheduleRepeat((time) => {
+      this.handleEmitNote('C5');
+    }, '8n');
+  };
 
   render() {
     return (
@@ -335,6 +337,11 @@ class InstrumentSection extends Component {
             whichInstrument={this.state.whichInstrument}
           />
         </div>
+        {this.props.approach != 3 && (
+          <div className='testSendAudio' onClick={() => this.testSendAudio()}>
+            Test send audio
+          </div>
+        )}
       </Fragment>
     );
   }

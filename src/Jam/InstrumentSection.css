@@ -123,6 +123,14 @@
   margin-right: 10px;
 }
 
+.testSendAudio {
+  margin: auto;
+  margin-top: 20px;
+  width: fit-content;
+  padding: 20px;
+  cursor: pointer;
+}
+
 hr.divider {
   margin-right: 10px;
   transform: rotate(90deg);
