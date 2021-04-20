@@ -88,7 +88,7 @@ function ClientSidePeer({ socket, socketId, roomFull, allMusicians }) {
       socket.emit('answerCall', { signal: data, to: caller });
     });
     peer2.on('data', (data) => {
-      if (Tone.Transport.state === 'started') piano1.triggerAttackRelease('C4', '0.5', '@4n');
+      if (Tone.Transport.state === 'started') piano1.triggerAttackRelease('C4', '0.5', '@16n');
     });
     peer2.on('connect', () => {
       console.log('connected');
@@ -110,7 +110,7 @@ function ClientSidePeer({ socket, socketId, roomFull, allMusicians }) {
     Tone.Transport.scheduleRepeat((time) => {
       // piano1.triggerAttackRelease('C4', '0.5', '@8n', 0.4);
       peer1.send();
-    }, '4n');
+    }, '16n');
   };
 
   return (
