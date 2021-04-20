@@ -189,7 +189,7 @@ class InstrumentSection extends Component {
     //React to Client Side Compensation with Websocket
     this.props.socket.on('clientSideSocketNoteOn', (note, instrument, socketId) => {
       if (Tone.Transport.state === 'started') {
-        this.playInstrumentRemote(2, note, '@8n');
+        this.playInstrumentRemote(2, note, '@4n');
       }
     });
   };
@@ -322,7 +322,7 @@ class InstrumentSection extends Component {
   testSendAudio = () => {
     Tone.Transport.scheduleRepeat((time) => {
       this.handleEmitNote('C5');
-    }, '8n');
+    }, '4n');
   };
 
   render() {
