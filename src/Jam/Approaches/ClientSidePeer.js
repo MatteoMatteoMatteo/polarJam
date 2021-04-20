@@ -131,7 +131,9 @@ function ClientSidePeer({ socket, socketId, roomFull, allMusicians }) {
           </div>
         )}
       </div>
-      {callAccepted && <div className={'fullRoom'}>You are connected to another Musician</div>}
+      {callAccepted && roomFull && (
+        <div className={'fullRoom'}>You are connected to another Musician</div>
+      )}
       <div className={'actionHolder'}>
         <button onClick={() => sendAudio()}>Send Audio From 1 To 2</button>
       </div>

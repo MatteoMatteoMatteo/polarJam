@@ -321,7 +321,7 @@ class InstrumentSection extends Component {
 
   testSendAudio = () => {
     Tone.Transport.scheduleRepeat((time) => {
-      this.handleEmitNote('C5');
+      this.handleEmitNote('C4');
     }, '16n');
   };
 
