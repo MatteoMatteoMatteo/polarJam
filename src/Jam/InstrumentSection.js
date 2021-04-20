@@ -175,6 +175,7 @@ class InstrumentSection extends Component {
     allMusicians: null,
     musicianIndex: 0,
     delay: '@8n',
+    CandE: false,
   };
 
   componentDidMount = (props) => {
@@ -189,7 +190,7 @@ class InstrumentSection extends Component {
     //React to Client Side Compensation with Websocket
     this.props.socket.on('clientSideSocketNoteOn', (note, instrument, socketId) => {
       if (Tone.Transport.state === 'started') {
-        this.playInstrumentRemote(2, note, Tone.context.currentTime);
+        this.playInstrumentRemote(2, note, '@4n');
       }
     });
   };
@@ -321,8 +322,22 @@ class InstrumentSection extends Component {
 
   testSendAudio = () => {
     Tone.Transport.scheduleRepeat((time) => {
-      this.handleEmitNote('C4');
+      if (this.state.CandE) {
+        this.sendE();
+      } else {
+        this.sendC();
+      }
     }, '4n');
+  };
+
+  sendC = () => {
+    this.emitNoteClientSideSocket('C4');
+    this.setState({ CandE: true });
+  };
+
+  sendE = () => {
+    this.emitNoteClientSideSocket('E4');
+    this.setState({ CandE: false });
   };
 
   render() {
