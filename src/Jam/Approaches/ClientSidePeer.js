@@ -88,7 +88,8 @@ function ClientSidePeer({ socket, socketId, roomFull, allMusicians }) {
       socket.emit('answerCall', { signal: data, to: caller });
     });
     peer2.on('data', (data) => {
-      if (Tone.Transport.state === 'started') piano1.triggerAttackRelease('C4', '0.5', '@16n');
+      if (Tone.Transport.state === 'started')
+        piano1.triggerAttackRelease('C4', '0.5', Tone.context.currentTime);
     });
     peer2.on('connect', () => {
       console.log('connected');
