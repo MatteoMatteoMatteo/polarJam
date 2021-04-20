@@ -118,12 +118,12 @@ function ClientSidePeer({ socket, socketId, roomFull, allMusicians }) {
     }, '4n');
   };
 
-  sendC = () => {
+  const sendC = () => {
     peer1.send('C4');
     setCandE(true);
   };
 
-  sendE = () => {
+  const sendE = () => {
     peer1.send('E4');
     setCandE(false);
   };
