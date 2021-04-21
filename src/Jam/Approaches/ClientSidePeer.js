@@ -18,8 +18,8 @@ const piano1 = new Tone.Sampler({
   C4: require('../../Assets/Instruments/Piano2/C4.mp3'),
 }).toMaster();
 
-function ClientSidePeer({ socket, socketId, roomFull, allMusicians }) {
-  const [me, setMe] = useState('');
+function ClientSidePeer({ socket, socketId, roomFull, allMusicians, noteWasPlayed }) {
+  const [initialSetUp, setInitialSetUp] = useState(false);
   const [stream, setStream] = useState();
   const [receivingCall, setReceivingCall] = useState(false);
   const [caller, setCaller] = useState('');
@@ -33,17 +33,26 @@ function ClientSidePeer({ socket, socketId, roomFull, allMusicians }) {
   const connectionRef = useRef();
 
   useEffect(() => {
-    socket.on('callUser', (data) => {
-      setReceivingCall(true);
-      setCaller(data.from);
-      setCallerSignal(data.signal);
-    });
+    if (!initialSetUp) {
+      socket.on('callUser', (data) => {
+        setReceivingCall(true);
+        setCaller(data.from);
+        setCallerSignal(data.signal);
+      });
 
-    socket.on('callAccepted', (signal) => {
-      setCallAccepted(true);
-      peer1.signal(signal);
-    });
-  }, []);
+      socket.on('callAccepted', (signal) => {
+        setCallAccepted(true);
+        peer1.signal(signal);
+      });
+
+      setInitialSetUp(true);
+    }
+
+    console.log(noteWasPlayed);
+    if (peer1) {
+      peer1.send(noteWasPlayed);
+    }
+  }, [noteWasPlayed]);
 
   const callUser = () => {
     setCalling(true);
@@ -88,7 +97,7 @@ function ClientSidePeer({ socket, socketId, roomFull, allMusicians }) {
       socket.emit('answerCall', { signal: data, to: caller });
     });
     peer2.on('data', (data) => {
-      if (Tone.Transport.state === 'started') piano1.triggerAttackRelease('C4', '0.5', '@4n');
+      if (Tone.Transport.state === 'started') piano1.triggerAttackRelease(data + '', '0.5', '@4n');
     });
     peer2.on('connect', () => {
       console.log('connected');

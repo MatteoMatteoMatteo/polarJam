@@ -25,6 +25,7 @@ export default function Jam({ location }) {
   const [approach, setApproach] = useState(0);
   const [roomFull, setRoomFull] = useState(false);
   const [allMusicians, setAllMusicians] = useState([]);
+  const [noteWasPlayed, setNoteWasPlayed] = useState();
 
   return (
     <>
@@ -38,6 +39,7 @@ export default function Jam({ location }) {
             approach={approach}
             socket={socket}
             roomFull={roomFull}
+            noteWasPlayed={(note) => setNoteWasPlayed(note)}
           />
         )}
 
@@ -58,6 +60,7 @@ export default function Jam({ location }) {
             roomFull={roomFull}
             socketId={socketId}
             socket={socket}
+            noteWasPlayed={noteWasPlayed}
           />
         )}
       </div>

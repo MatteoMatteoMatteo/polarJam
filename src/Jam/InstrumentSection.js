@@ -296,6 +296,8 @@ class InstrumentSection extends Component {
         this.emitNoteServerSideSocket(note);
       } else if (this.props.approach === 2) {
         this.emitNoteClientSideSocket(note);
+      } else if (this.props.approach === 3) {
+        this.props.noteWasPlayed(note);
       }
     }
   };
@@ -325,6 +327,14 @@ class InstrumentSection extends Component {
     }, '4n');
   };
 
+  chords = () => {
+    Tone.Transport.scheduleRepeat((time) => {
+      this.playInstrument(2, 'A3', '@2n');
+      this.playInstrument(2, 'C3', '@2n');
+      this.playInstrument(2, 'C3', '@2n');
+    }, '2n');
+  };
+
   render() {
     return (
       <Fragment>
@@ -338,9 +348,14 @@ class InstrumentSection extends Component {
           />
         </div>
         {this.props.approach != 3 && (
-          <div className='testSendAudio' onClick={() => this.testSendAudio()}>
-            Test send audio
-          </div>
+          <>
+            <div className='testSendAudio' onClick={() => this.testSendAudio()}>
+              Test send audio
+            </div>
+            <div className='testSendAudio' onClick={() => this.chords()}>
+              Chords
+            </div>
+          </>
         )}
       </Fragment>
     );
