@@ -347,7 +347,7 @@ class InstrumentSection extends Component {
             whichInstrument={this.state.whichInstrument}
           />
         </div>
-        {this.props.approach != 3 && (
+        {/* {this.props.approach != 3 && (
           <>
             <div className='testSendAudio' onClick={() => this.testSendAudio()}>
               Test send audio
@@ -356,7 +356,7 @@ class InstrumentSection extends Component {
               Chords
             </div>
           </>
-        )}
+        )} */}
       </Fragment>
     );
   }

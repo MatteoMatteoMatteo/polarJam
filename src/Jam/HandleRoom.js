@@ -72,14 +72,14 @@ class HandleRoom extends Component {
     return (
       <>
         {this.state.roomFull && this.props.approach != 3 ? (
-          <div className={'fullRoom'}>You are connected to another Musician</div>
+          <div className={'fullRoom'}>You are connected to another musician:</div>
         ) : (
           this.props.approach != 3 && (
-            <div className={'emptyRoom'}>You are not connected to another Musician</div>
+            <div className={'emptyRoom'}>You are not connected to another musician</div>
           )
         )}
         {!this.state.roomFull && this.props.approach === 3 && (
-          <div className={'emptyRoom'}>You are not connected to another Musician</div>
+          <div className={'emptyRoom'}>You are not connected to another musician</div>
         )}
       </>
     );

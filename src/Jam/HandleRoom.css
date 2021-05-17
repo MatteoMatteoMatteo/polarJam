@@ -1,16 +1,16 @@
 .fullRoom {
   margin: auto;
-  margin-top: 30px;
+  margin-top: 40px;
   background-color: var(--niceGreen);
   padding: 20px;
   text-align: center;
-  width: fit-content;
+  width: 400px;
   border-radius: 3px 3px 3px 3px;
 }
 
 .emptyRoom {
   margin: auto;
-  margin-top: 30px;
+  margin-top: 40px;
   border-bottom: solid 2px var(--greyish);
   padding: 10px;
   text-align: center;

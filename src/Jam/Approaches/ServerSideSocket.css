@@ -1,0 +1,30 @@
+.latencyHolder {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  width: 400px;
+}
+
+.myLatencyHolder {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  width: 100%;
+  background: var(--blueDark);
+  margin-bottom: 30px;
+  border-radius: 3px 3px 3px 3px;
+}
+
+.otherLatencyHolder {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  width: 100%;
+  border-radius: 3px 3px 3px 3px;
+  align-items: center;
+  background: var(--blueDark);
+}
