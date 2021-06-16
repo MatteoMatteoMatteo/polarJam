@@ -170,7 +170,7 @@ class InstrumentSection extends Component {
     note: null,
     myLatency: 0,
     othersLatency: 0,
-    whichInstrument: 4,
+    whichInstrument: 2,
     activeInstrument: 'Drum Kit',
     allMusicians: null,
     musicianIndex: 0,
