@@ -170,7 +170,7 @@ class InstrumentSection extends Component {
     note: null,
     myLatency: 0,
     othersLatency: 0,
-    whichInstrument: 2,
+    whichInstrument: 4,
     activeInstrument: 'Drum Kit',
     allMusicians: null,
     musicianIndex: 0,
@@ -181,12 +181,12 @@ class InstrumentSection extends Component {
     //Check for Midi
     this.isMidiSupported();
 
-    //React to Server Side Compensation with Websocket
+    //React to Server-side Compensation with WebSocket
     this.props.socket.on('serverSideSocketNoteOn', (note, instrument, socketId) => {
       this.playInstrumentRemote(2, note, Tone.context.currentTime);
     });
 
-    //React to Client Side Compensation with Websocket
+    //React to Client-side Compensation with WebSocket
     this.props.socket.on('clientSideSocketNoteOn', (note, instrument, socketId) => {
       if (Tone.Transport.state === 'started') {
         this.playInstrumentRemote(2, note, '@16n');
@@ -302,7 +302,7 @@ class InstrumentSection extends Component {
     }
   };
 
-  //Emit to Server Side Compensation with Websocket
+  //Emit to Server-Side Compensation with WebSocket
   emitNoteServerSideSocket = (note) => {
     this.props.socket.emit(
       'serverSideSocketNoteOn',
@@ -311,7 +311,7 @@ class InstrumentSection extends Component {
       this.props.socketId
     );
   };
-  //Emit to Client Side Compensationwith Websocket
+  //Emit to Client-Side Compensationwith WebSocket
   emitNoteClientSideSocket = (note) => {
     this.props.socket.emit(
       'clientSideSocketNoteOn',

@@ -12,20 +12,21 @@ import ClientSideSocket from './Approaches/ClientSideSocket';
 import ClientSidePeer from './Approaches/ClientSidePeer';
 
 export default function Jam({ location }) {
-  // const socket = io('http://localhost:8080');
-  const socket = io('https://socket-latency.herokuapp.com');
+  const socket = io('http://localhost:8080');
+  // const socket = io('https://socket-latency.herokuapp.com');
 
   const approaches = {
     0: '',
-    1: 'Server Side with Websocket',
-    2: 'Client Side with Websocket',
-    3: 'Client Side with Peer to Peer',
+    1: 'Server-side with WebSocket',
+    2: 'Client-side with WebSocket',
+    3: 'Client-side with peer-to-peer',
   };
   const [socketId, setSocketId] = useState(null);
   const [approach, setApproach] = useState(0);
   const [roomFull, setRoomFull] = useState(false);
   const [allMusicians, setAllMusicians] = useState([]);
-  const [noteWasPlayed, setNoteWasPlayed] = useState();
+  const [noteWasPlayed, setNoteWasPlayed] = useState([]);
+  const [helper, setHelper] = useState(false);
 
   return (
     <>
@@ -39,7 +40,10 @@ export default function Jam({ location }) {
             approach={approach}
             socket={socket}
             roomFull={roomFull}
-            noteWasPlayed={(note) => setNoteWasPlayed(note)}
+            noteWasPlayed={(note) => {
+              setHelper(!helper);
+              setNoteWasPlayed([note, helper]);
+            }}
           />
         )}
 

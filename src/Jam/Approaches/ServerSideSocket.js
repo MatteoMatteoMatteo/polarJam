@@ -27,7 +27,7 @@ export default function ServerSideSocket({ socket, roomFull }) {
 
   return (
     <div className={'latencyHolder'}>
-      {roomFull && (
+      {/* {roomFull && (
         <div className={'myLatencyHolder'}>
           <div style={{ marginRight: '40px' }}>Your latency to server:</div>
           <div style={{ minWidth: '50px' }}>{myLatency} ms</div>
@@ -38,7 +38,7 @@ export default function ServerSideSocket({ socket, roomFull }) {
           <div style={{ marginRight: '40px' }}>Other musician's latency to server:</div>
           <div style={{ minWidth: '50px' }}>{othersLatency} ms</div>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

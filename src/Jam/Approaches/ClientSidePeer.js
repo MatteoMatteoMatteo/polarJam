@@ -48,9 +48,14 @@ function ClientSidePeer({ socket, socketId, roomFull, allMusicians, noteWasPlaye
       setInitialSetUp(true);
     }
 
-    console.log(noteWasPlayed);
     if (peer1) {
+      console.log(noteWasPlayed);
       peer1.send(noteWasPlayed);
+    }
+
+    if (peer2) {
+      console.log(noteWasPlayed);
+      peer2.send(noteWasPlayed);
     }
   }, [noteWasPlayed]);
 
@@ -62,7 +67,6 @@ function ClientSidePeer({ socket, socketId, roomFull, allMusicians, noteWasPlaye
         idToCall = el.socketId;
       }
     });
-
     peer1 = new Peer({
       initiator: true,
       trickle: false,
@@ -80,7 +84,8 @@ function ClientSidePeer({ socket, socketId, roomFull, allMusicians, noteWasPlaye
     });
 
     peer1.on('data', (data) => {
-      console.log('I got a message from musician 2: ' + data);
+      console.log(data + '');
+      if (Tone.Transport.state === 'started') piano1.triggerAttackRelease(data + '', '0.5', '@8n');
     });
 
     connectionRef.current = peer1;
@@ -97,7 +102,8 @@ function ClientSidePeer({ socket, socketId, roomFull, allMusicians, noteWasPlaye
       socket.emit('answerCall', { signal: data, to: caller });
     });
     peer2.on('data', (data) => {
-      if (Tone.Transport.state === 'started') piano1.triggerAttackRelease(data + '', '0.5', '@16n');
+      if (Tone.Transport.state === 'started') piano1.triggerAttackRelease(data + '', '0.5', '@8n');
+      console.log(data + '');
     });
     peer2.on('connect', () => {
       console.log('connected');
@@ -123,7 +129,7 @@ function ClientSidePeer({ socket, socketId, roomFull, allMusicians, noteWasPlaye
       <div className='container'>
         {roomFull && !calling && !receivingCall ? (
           <div className='otherMusician' onClick={() => callUser()}>
-            Set up Peer to Peer connection to the other musician
+            Set up peer-to-peer connection to another musician
           </div>
         ) : (
           roomFull &&
@@ -137,11 +143,11 @@ function ClientSidePeer({ socket, socketId, roomFull, allMusicians, noteWasPlaye
         )}
       </div>
       {callAccepted && roomFull && (
-        <div className={'fullRoom'}>You are connected to another Musician</div>
+        <div className={'fullRoom'}>You are connected to another musician</div>
       )}
-      <div className={'actionHolder'}>
+      {/* <div className={'actionHolder'}>
         <button onClick={() => sendAudio()}>Send Audio From 1 To 2</button>
-      </div>
+      </div> */}
     </>
   );
 }

@@ -67,13 +67,13 @@ class StudioControl extends Component {
 
     audioLoaded: false,
     started: false,
-    currentTempo: 100,
+    currentTempo: this.props.bpm,
     metronome: true,
   };
 
   //Setup
   componentDidMount = () => {
-    Transport.bpm.value = 100;
+    Transport.bpm.value = this.props.bpm;
 
     this.props.socket.on('syncMetro', (transportState) => {
       this.playPauseRemote(transportState);
