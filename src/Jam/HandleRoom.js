@@ -81,6 +81,7 @@ class HandleRoom extends Component {
         {!this.state.roomFull && this.props.approach === 3 && (
           <div className={'emptyRoom'}>You are not connected to another musician</div>
         )}
+        {/* <div class={'sendAudioButton'}>Send Test Audio</div>{' '} */}
       </>
     );
   }

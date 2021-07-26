@@ -127,6 +127,13 @@ function ClientSidePeer({ socket, socketId, roomFull, allMusicians, noteWasPlaye
 
   return (
     <>
+      <div
+        onClick={() => {
+          sendAudio();
+        }}
+        class={'sendAudioButton'}>
+        Send Audio
+      </div>
       <div className='container'>
         {roomFull && !calling && !receivingCall ? (
           <div className='otherMusician' onClick={() => callUser()}>

@@ -105,6 +105,9 @@ class InstrumentSection extends Component {
       84: 'C5',
     };
 
+    this.testNote = 'C2';
+    this.testNoteCounter = 1;
+
     this.socket = null;
 
     this.myLatencyToServer = null;
@@ -183,13 +186,15 @@ class InstrumentSection extends Component {
 
     //React to Server-side Compensation with WebSocket
     this.props.socket.on('serverSideSocketNoteOn', (note, instrument, socketId) => {
+      console.log(note);
       this.playInstrumentRemote(2, note, Tone.context.currentTime);
+      console.log('hallloooo');
     });
 
     //React to Client-side Compensation with WebSocket
     this.props.socket.on('clientSideSocketNoteOn', (note, instrument, socketId) => {
       if (Tone.Transport.state === 'started') {
-        this.playInstrumentRemote(2, note, '@16n');
+        this.playInstrumentRemote(2, note, '@4n');
       }
     });
   };
@@ -255,17 +260,17 @@ class InstrumentSection extends Component {
   playInstrument = (instrument, key, time) => {
     if (this.keyToNote[key] || isNaN(key)) {
       if (instrument === 1) {
-        this.drums.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '1.7', 0);
+        this.drums.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.1', 0);
       } else if (instrument === 2) {
-        this.piano1.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.5', time, 0.4);
+        this.piano1.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.1', time, 0.4);
       } else if (instrument === 3) {
-        this.piano2.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.5', time, 0.5);
+        this.piano2.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.1', time, 0.5);
       } else if (instrument === 4) {
-        this.pluck1.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.5', time, 0.5);
+        this.pluck1.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.1', time, 0.5);
       } else if (instrument === 5) {
-        this.pluck2.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '1', time, 0.6);
+        this.pluck2.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.1', time, 0.6);
       } else if (instrument === 6) {
-        this.acid.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '1', time, 0.6);
+        this.acid.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.1', time, 0.6);
       }
     }
 
@@ -275,22 +280,23 @@ class InstrumentSection extends Component {
   playInstrumentRemote = (instrument, key, time) => {
     if (this.keyToNote[key] || isNaN(key)) {
       if (instrument === 1) {
-        this.drums.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '1.7', time);
+        this.drums.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.1', time);
       } else if (instrument === 2) {
-        this.piano1.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.5', time, 0.4);
+        this.piano1.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.1', time, 0.4);
       } else if (instrument === 3) {
-        this.piano2.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.5', time, 0.5);
+        this.piano2.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.1', time, 0.5);
       } else if (instrument === 4) {
-        this.pluck1.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.5', time, 0.5);
+        this.pluck1.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.1', time, 0.5);
       } else if (instrument === 5) {
-        this.pluck2.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '1', time, 0.6);
+        this.pluck2.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.1', time, 0.6);
       } else if (instrument === 6) {
-        this.acid.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '1', time, 0.6);
+        this.acid.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.1', time, 0.6);
       }
     }
   };
 
   handleEmitNote = (note) => {
+    console.log(note);
     if (this.props.roomFull) {
       if (this.props.approach === 1) {
         this.emitNoteServerSideSocket(note);
@@ -323,7 +329,19 @@ class InstrumentSection extends Component {
 
   testSendAudio = () => {
     Tone.Transport.scheduleRepeat((time) => {
-      this.emitNoteClientSideSocket('C4');
+      if (this.testNoteCounter === 1) this.testNote = 'C2';
+      if (this.testNoteCounter === 2) this.testNote = 'D2';
+      if (this.testNoteCounter === 3) this.testNote = 'E2';
+      if (this.testNoteCounter === 4) this.testNote = 'F2';
+      if (this.testNoteCounter === 5) this.testNote = 'G2';
+      if (this.testNoteCounter === 6) this.testNote = 'A2';
+      if (this.testNoteCounter === 7) this.testNote = 'B2';
+      if (this.testNoteCounter === 8) this.testNote = 'C3';
+
+      this.emitNoteServerSideSocket(this.testNote);
+
+      this.testNoteCounter++;
+      if (this.testNoteCounter === 9) this.testNoteCounter = 1;
     }, '4n');
   };
 
@@ -357,6 +375,11 @@ class InstrumentSection extends Component {
             </div>
           </>
         )} */}
+        {this.props.approach != 3 && (
+          <div onClick={this.testSendAudio} class={'sendAudioButton'}>
+            Send Audio
+          </div>
+        )}
       </Fragment>
     );
   }
