@@ -327,7 +327,7 @@ class InstrumentSection extends Component {
     );
   };
 
-  testSendAudio = () => {
+  testSendAudio = (approach) => {
     Tone.Transport.scheduleRepeat((time) => {
       if (this.testNoteCounter === 1) this.testNote = 'C2';
       if (this.testNoteCounter === 2) this.testNote = 'D2';
@@ -338,7 +338,11 @@ class InstrumentSection extends Component {
       if (this.testNoteCounter === 7) this.testNote = 'B2';
       if (this.testNoteCounter === 8) this.testNote = 'C3';
 
-      this.emitNoteServerSideSocket(this.testNote);
+      if (approach === 1) {
+        this.emitNoteServerSideSocket(this.testNote);
+      } else {
+        this.emitNoteClientSideSocket(this.testNote);
+      }
 
       this.testNoteCounter++;
       if (this.testNoteCounter === 9) this.testNoteCounter = 1;
@@ -376,7 +380,7 @@ class InstrumentSection extends Component {
           </>
         )} */}
         {this.props.approach != 3 && (
-          <div onClick={this.testSendAudio} class={'sendAudioButton'}>
+          <div onClick={this.testSendAudio(this.props.approach)} class={'sendAudioButton'}>
             Send Audio
           </div>
         )}
