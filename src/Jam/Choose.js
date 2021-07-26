@@ -4,7 +4,7 @@ import './Choose.css';
 export default function Choose({ chooseApproach }) {
   return (
     <div className={'approachHolder'}>
-      <div className='chooseHeader'>Choose a Delay Compensation Approach</div>
+      <div className='chooseHeader'>Delay Compensation Architectures</div>
       <div className={'delayCompensationHolder'}>
         <div onClick={() => chooseApproach(1)}>
           Server-side <br></br> <span>WebSocket</span>
@@ -13,7 +13,7 @@ export default function Choose({ chooseApproach }) {
           Client-side <br></br> <span>WebSocket</span>
         </div>
         <div onClick={() => chooseApproach(3)}>
-          Client-side <br></br> <span>peer-to-peer</span>
+          Client-side <br></br> <span>Peer-to-peer</span>
         </div>
       </div>
     </div>

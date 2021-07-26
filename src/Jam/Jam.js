@@ -12,8 +12,8 @@ import ClientSideSocket from './Approaches/ClientSideSocket';
 import ClientSidePeer from './Approaches/ClientSidePeer';
 
 export default function Jam({ location }) {
-  // const socket = io('http://localhost:8080');
-  const socket = io('https://socket-latency.herokuapp.com');
+  const socket = io('http://localhost:8080');
+  // const socket = io('https://socket-latency.herokuapp.com');
 
   const approaches = {
     0: '',
@@ -33,7 +33,9 @@ export default function Jam({ location }) {
       <Navigation approaches={approaches} approach={approach} />
       <div className='wrapMe'>
         {approach === 0 && <Choose chooseApproach={(data) => setApproach(data)} />}
+
         {approach != 0 && <StudioControl socketId={socketId} socket={socket} bpm={120} />}
+
         {approach != 0 && (
           <InstrumentSection
             socketId={socketId}

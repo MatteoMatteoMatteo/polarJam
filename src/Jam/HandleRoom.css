@@ -16,3 +16,16 @@
   text-align: center;
   width: fit-content;
 }
+
+.sendAudioButton {
+  border: solid 2px white;
+  padding: 20px;
+  width: fit-content;
+  margin: auto;
+  margin-top: 50px;
+  cursor: pointer;
+}
+
+.sendAudioButton:hover {
+  background-color: black;
+}

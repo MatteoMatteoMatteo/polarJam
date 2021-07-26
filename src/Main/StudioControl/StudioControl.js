@@ -94,10 +94,14 @@ class StudioControl extends Component {
     p5.text(Transport.position.toString().slice(0, 5), 73, 13);
   };
 
-  //Play & Pause Button
+  //Start & Stop the Audio Context
   playPause = () => {
     if (Transport.state === 'stopped') {
       Transport.start();
+
+      //Emit to other musician
+      this.props.socket.emit('syncMetroRequest', Transport.state, this.props.socketId);
+
       if (this.state.metronome && this.metronome.state === 'stopped') {
         this.metronome.playbackRate = this.state.currentTempo / this.props.bpm;
         this.metronome.start(
@@ -106,10 +110,6 @@ class StudioControl extends Component {
         );
       }
       this.setState({ started: true });
-
-      //Emit it to other musicians
-      let state = 'started';
-      this.props.socket.emit('syncMetroRequest', state, this.props.socketId);
     } else {
       Transport.stop();
       if (this.metronome.state === 'started') {
@@ -123,18 +123,36 @@ class StudioControl extends Component {
     }
   };
 
-  //Play & Pause Button
+  //Audio Context getting Started & Stopped
   playPauseRemote = (transportState) => {
-    console.log('ehheeh');
     if (Transport.state === 'stopped' && transportState === 'started') {
+      
       Transport.start();
+
+
+
       if (this.state.metronome && this.metronome.state === 'stopped') {
+
+
         this.metronome.playbackRate = this.state.currentTempo / this.props.bpm;
         this.metronome.start(
           undefined,
           Transport.toSeconds(Transport.position) * (this.state.currentTempo / this.props.bpm)
         );
+
+
+
+
+
+        
       }
+
+
+
+
+
+
+
       this.setState({ started: true });
     } else if (Transport.state === 'stopped' && transportState === 'stopped') {
     } else if (Transport.state === 'started' && transportState === 'started') {

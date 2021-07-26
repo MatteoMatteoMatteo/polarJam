@@ -103,6 +103,7 @@ function ClientSidePeer({ socket, socketId, roomFull, allMusicians, noteWasPlaye
     });
     peer2.on('data', (data) => {
       if (Tone.Transport.state === 'started') piano1.triggerAttackRelease(data + '', '0.5', '@8n');
+
       console.log(data + '');
     });
     peer2.on('connect', () => {
