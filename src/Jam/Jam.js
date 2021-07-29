@@ -12,8 +12,8 @@ import ClientSideSocket from './Approaches/ClientSideSocket';
 import ClientSidePeer from './Approaches/ClientSidePeer';
 
 export default function Jam({ location }) {
-  // const socket = io('http://localhost:8080');
-  const socket = io('https://socket-latency.herokuapp.com');
+  const socket = io('http://localhost:8080');
+  // const socket = io('https://socket-latency.herokuapp.com');
 
   const approaches = {
     0: '',
