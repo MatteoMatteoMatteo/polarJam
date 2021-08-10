@@ -379,7 +379,7 @@ class InstrumentSection extends Component {
             </div>
           </>
         )} */}
-        {this.props.approach != 3 && (
+        {/* {this.props.approach != 3 && (
           <div
             onClick={() => {
               this.testSendAudio(this.props.approach);
@@ -387,7 +387,7 @@ class InstrumentSection extends Component {
             class={'sendAudioButton'}>
             Send Audio
           </div>
-        )}
+        )} */}
       </Fragment>
     );
   }

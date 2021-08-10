@@ -126,32 +126,15 @@ class StudioControl extends Component {
   //Audio Context getting Started & Stopped
   playPauseRemote = (transportState) => {
     if (Transport.state === 'stopped' && transportState === 'started') {
-      
       Transport.start();
 
-
-
       if (this.state.metronome && this.metronome.state === 'stopped') {
-
-
         this.metronome.playbackRate = this.state.currentTempo / this.props.bpm;
         this.metronome.start(
           undefined,
           Transport.toSeconds(Transport.position) * (this.state.currentTempo / this.props.bpm)
         );
-
-
-
-
-
-        
       }
-
-
-
-
-
-
 
       this.setState({ started: true });
     } else if (Transport.state === 'stopped' && transportState === 'stopped') {
@@ -225,7 +208,7 @@ class StudioControl extends Component {
           </div>
           <div className={'tempoHolder'}>
             <div>Tempo</div>
-            <div className='controlSlider'>
+            {/* <div className='controlSlider'>
               <NormalSlider
                 min={10}
                 id='tempo'
@@ -238,7 +221,7 @@ class StudioControl extends Component {
                   this.masterTempo(e, value);
                 }}
               />
-            </div>
+            </div> */}
             <div className='controlSketch'>
               <Sketch setup={this.setup} draw={this.draw} />
             </div>
