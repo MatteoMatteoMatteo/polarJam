@@ -280,17 +280,17 @@ class InstrumentSection extends Component {
   playInstrumentRemote = (instrument, key, time) => {
     if (this.keyToNote[key] || isNaN(key)) {
       if (instrument === 1) {
-        this.drums.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '1', time);
+        this.drums.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.1', time);
       } else if (instrument === 2) {
-        this.piano1.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '1', time, 0.4);
+        this.piano1.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.1', time, 0.4);
       } else if (instrument === 3) {
-        this.piano2.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '1', time, 0.5);
+        this.piano2.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.1', time, 0.5);
       } else if (instrument === 4) {
-        this.pluck1.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '1', time, 0.5);
+        this.pluck1.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.1', time, 0.5);
       } else if (instrument === 5) {
-        this.pluck2.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '1', time, 0.6);
+        this.pluck2.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.1', time, 0.6);
       } else if (instrument === 6) {
-        this.acid.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '1', time, 0.6);
+        this.acid.triggerAttackRelease(isNaN(key) ? key : this.keyToNote[key], '0.1', time, 0.6);
       }
     }
   };
