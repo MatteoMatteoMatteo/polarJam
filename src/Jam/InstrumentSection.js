@@ -185,16 +185,16 @@ class InstrumentSection extends Component {
     this.isMidiSupported();
 
     //React to Server-side Compensation with WebSocket
-    this.props.socket.on('serverSideSocketNoteOn', (note, instrument, socketId) => {
-      console.log(note);
-      this.playInstrumentRemote(2, note, Tone.context.currentTime);
-      console.log('hallloooo');
-    });
+    // this.props.socket.on('serverSideSocketNoteOn', (note, instrument, socketId) => {
+    //   console.log(note);
+    //   this.playInstrumentRemote(2, note, Tone.context.currentTime);
+    //   console.log('hallloooo');
+    // });
 
     //React to Client-side Compensation with WebSocket
     this.props.socket.on('clientSideSocketNoteOn', (note, instrument, socketId) => {
       if (Tone.Transport.state === 'started') {
-        this.playInstrumentRemote(2, note, '@4n');
+        this.playInstrumentRemote(2, note, Tone.context.currentTime);
       }
     });
   };
@@ -369,7 +369,7 @@ class InstrumentSection extends Component {
             whichInstrument={this.state.whichInstrument}
           />
         </div>
-        {/* {this.props.approach != 3 && (
+        {this.props.approach != 3 && (
           <>
             <div className='testSendAudio' onClick={() => this.testSendAudio()}>
               Test send audio
@@ -378,8 +378,8 @@ class InstrumentSection extends Component {
               Chords
             </div>
           </>
-        )} */}
-        {/* {this.props.approach != 3 && (
+        )} 
+         {this.props.approach != 3 && (
           <div
             onClick={() => {
               this.testSendAudio(this.props.approach);
@@ -387,7 +387,7 @@ class InstrumentSection extends Component {
             class={'sendAudioButton'}>
             Send Audio
           </div>
-        )} */}
+        )}
       </Fragment>
     );
   }
