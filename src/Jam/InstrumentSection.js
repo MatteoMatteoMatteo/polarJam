@@ -185,16 +185,16 @@ class InstrumentSection extends Component {
     this.isMidiSupported();
 
     //React to Server-side Compensation with WebSocket
-    // this.props.socket.on('serverSideSocketNoteOn', (note, instrument, socketId) => {
-    //   console.log(note);
-    //   this.playInstrumentRemote(2, note, Tone.context.currentTime);
-    //   console.log('hallloooo');
-    // });
+    this.props.socket.on('serverSideSocketNoteOn', (note, instrument, socketId) => {
+      console.log(note);
+      this.playInstrumentRemote(2, note, Tone.context.currentTime);
+      console.log('hallloooo');
+    });
 
     //React to Client-side Compensation with WebSocket
     this.props.socket.on('clientSideSocketNoteOn', (note, instrument, socketId) => {
       if (Tone.Transport.state === 'started') {
-        this.playInstrumentRemote(2, note, Tone.context.currentTime);
+        this.playInstrumentRemote(2, note, "@4n");
       }
     });
   };
